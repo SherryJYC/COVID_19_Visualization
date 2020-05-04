@@ -4,6 +4,8 @@ import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 
+export const mapboxgl = window.mapboxgl;
+
 new Vue({
   vuetify,
   render: h => h(App)
