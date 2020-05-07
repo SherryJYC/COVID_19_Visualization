@@ -5,16 +5,17 @@
 
       <h2 class="display-3 font-weight-bold mb-3">COVID-19 Status in China</h2>
       <div class="py-5"></div>
-      <h2>show deck</h2>
-
-      <div class="deck-container">
-        <div id="china-map" ref="map"></div>
-        <canvas id="deck-canvas" ref="canvas"></canvas>
-      </div>
+      
 
       <v-row>
         <v-col>
-          <!-- <div id="china-map">Map</div> -->
+         <h2>show deck</h2>
+         <div class="deck-container">
+          <div id="china-map" ref="map"></div>
+          <canvas id="deck-canvas" ref="canvas"></canvas>
+        </div>
+
+
         </v-col>
         <v-col>
           <div id="china-chart">Chart</div>
@@ -37,9 +38,8 @@
 
 <script>
 import { mapboxgl } from "@/main";
-import { Deck } from "@deck.gl/core";
 import {HexagonLayer} from '@deck.gl/aggregation-layers';
-import {ScatterplotLayer} from '@deck.gl/layers';
+import {MapboxLayer} from '@deck.gl/mapbox';
 import * as d3 from "d3";
 
 export default {
@@ -55,83 +55,75 @@ export default {
       "pk.eyJ1IjoibW1jYXJ0b2cwMSIsImEiOiJjazk2bHZlbW8wOW5xM250Y2ZkbXNnZGdjIn0.QS71DsIq1oSDNUgEmfA3kg",
     csv_url:
     'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv',
+    COLOR_RANGE:
+    [
+            [1, 152, 189],
+            [73, 227, 206],
+            [216, 254, 181],
+            [254, 237, 177],
+            [254, 173, 84],
+            [209, 55, 78]
+        ],
+    LIGHT_SETTINGS:{
+            lightsPosition: [-0.144528, 49.739968, 8000, -3.807751, 54.104682, 8000],
+            ambientRatio: 0.4,
+            diffuseRatio: 0.6,
+            specularRatio: 0.2,
+            lightsStrength: [0.8, 0.0, 0.8, 0.0],
+            numberOfLights: 2
+        },
   }),
   created() {
     this.map = null;
     this.deck = null;
   },
   methods: {
-    initMap: function() {
-      mapboxgl.accessToken = this.token;
+    // initMap: function() {
+    //   mapboxgl.accessToken = this.token;
 
-      this.map = new mapboxgl.Map({
-        container: "china-map",
-        style: "mapbox://styles/mapbox/light-v10",
-        center: [-1.4157, 52.2324],
-        zoom: 6
-      });
-      
-      this.deck = new Deck({
-        canvas: this.$refs.canvas,
-        width: "100%",
-        height: "100%",
-        initialViewState: {
-          longitude: -1.4157,
-          latitude: 52.2324,
-          zoom: 6,
-          minZoom: 5,
-          maxZoom: 15,
-          pitch: 40.5
-        },
-        controller: true,
-        layers: [
-          // add scatter plot layer, source:
-          new ScatterplotLayer({
-            data: [
-              {position: [-1.4157, 52.2324], color: [255, 0, 0], radius: 1000}
-            ],
-            getPosition: d => d.position,
-            getRadius: d => d.radius,
-            getFillColor: d => d.color,
-            opacity: 0.3
-          }),
-  ]
-      });
-  }
+    //   this.map = new mapboxgl.Map({
+    //     container: "china-map",
+    //     style: "mapbox://styles/mapbox/light-v10",
+    //     center: [-1.4157, 52.2324],
+    //     zoom: 6
+    //   });
 
   },
   mounted() {
-    this.initMap();
-    const data = d3.csv(this.csv_url);
+        mapboxgl.accessToken = this.token;
+        this.map = new mapboxgl.Map({
+            container: document.getElementById("china-map"),
+            style: 'mapbox://styles/mapbox/dark-v10?optimize=true',
+            center: [-1.4157, 52.2324],
+            zoom: 6,
+            pitch: 40.5,
+            antialias: true
+        });
 
-    const COLOR_RANGE = [
-      [1, 152, 189],
-      [73, 227, 206],
-      [216, 254, 181],
-      [254, 237, 177],
-      [254, 173, 84],
-      [209, 55, 78]
-    ];
+        var hexagonLayer;
+        //Add the deck.gl Custom Layer to the map once the Mapbox map loads
+        this.map.on('style.load', () => {
 
-    const hexagonLayer = new HexagonLayer({
-      id: 'heatmap',
-      data,
-      colorRange: COLOR_RANGE,
-      elevationRange: [0, 1000],
-      elevationScale: 250,
-      extruded: true,
-      pickable: true,
-      radius: 200,
-      getPosition: d => d.COORDINATES,
-      opacity: 1,
-    });
-    // add hexagon layer 
-    // source: https://codepen.io/vis-gl/pen/NYYeNj
-    this.deck.setProps({
-      layers: [hexagonLayer]
-    });
-
-  }
+            hexagonLayer = new MapboxLayer({
+                type: HexagonLayer,
+                id: 'heatmap',
+                data: d3.csv(this.csv_url),
+                radius: 1000,
+                coverage: 1,
+                upperPercentile: 100,
+                colorRange: this.COLOR_RANGE,
+                elevationRange: [0, 1000],
+                elevationScale: 250,
+                extruded: true,
+                getPosition: d => [Number(d.lng), Number(d.lat)],
+                lightSettings: this.LIGHT_SETTINGS,
+                opacity: 1
+            });
+            // Add the deck.gl hex layer below labels in the Mapbox map
+            this.map.addLayer(hexagonLayer, 'waterway-label');
+        });
+        
+    }
 };
 </script>
 

@@ -82,7 +82,7 @@ export default {
     // HelloWorld,
     Global,
     China,
-    SARS
+    SARS,
   },
 
   data: () => ({
