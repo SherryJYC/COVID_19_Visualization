@@ -53,8 +53,11 @@ export default {
     ],
     token:
       "pk.eyJ1IjoibW1jYXJ0b2cwMSIsImEiOiJjazk2bHZlbW8wOW5xM250Y2ZkbXNnZGdjIn0.QS71DsIq1oSDNUgEmfA3kg",
-    csv_url:
+    csv_url: // trial of deck.gl example
     'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv',
+    covid_url: // data of COVID19 updated in 7 May
+    'data/DXYcity0507.csv',
+
     COLOR_RANGE:
     [
             [1, 152, 189],
@@ -94,8 +97,8 @@ export default {
         this.map = new mapboxgl.Map({
             container: document.getElementById("china-map"),
             style: 'mapbox://styles/mapbox/dark-v10?optimize=true',
-            center: [-1.4157, 52.2324],
-            zoom: 6,
+            center: [114.299935,30.595105], // use long, lat of Wuhan
+            zoom: 4,
             pitch: 40.5,
             antialias: true
         });
@@ -107,15 +110,18 @@ export default {
             hexagonLayer = new MapboxLayer({
                 type: HexagonLayer,
                 id: 'heatmap',
-                data: d3.csv(this.csv_url),
+                data: d3.csv(this.covid_url),
                 radius: 1000,
                 coverage: 1,
                 upperPercentile: 100,
                 colorRange: this.COLOR_RANGE,
-                elevationRange: [0, 1000],
-                elevationScale: 250,
+                // elevationRange: [0, 1000],
+                elevationScale: 1000,
                 extruded: true,
-                getPosition: d => [Number(d.lng), Number(d.lat)],
+                getPosition: d => [Number(d.Longitude), Number(d.Latitude)],//[Number(d.lng), Number(d.lat)],
+                getElevation: d => {
+                    return Number(d.city_confirmedCount);
+                },
                 lightSettings: this.LIGHT_SETTINGS,
                 opacity: 1
             });
