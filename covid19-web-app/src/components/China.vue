@@ -42,6 +42,8 @@ import {HexagonLayer} from '@deck.gl/aggregation-layers';
 import {MapboxLayer} from '@deck.gl/mapbox';
 import * as d3 from "d3";
 
+// var csv2geojson = require('csv2geojson');
+
 export default {
   name: "China",
 
@@ -94,7 +96,7 @@ export default {
   },
   mounted() {
         mapboxgl.accessToken = this.token;
-        this.map = new mapboxgl.Map({
+         this.map = new mapboxgl.Map({
             container: document.getElementById("china-map"),
             style: 'mapbox://styles/mapbox/dark-v10?optimize=true',
             center: [114.299935,30.595105], // use long, lat of Wuhan
@@ -107,9 +109,22 @@ export default {
         //Add the deck.gl Custom Layer to the map once the Mapbox map loads
         this.map.on('style.load', () => {
 
+            // this.map.addSource('dxy0507', {
+            //             'type': 'geojson',
+            //              'data': data
+            // });
+            // this.map.addLayer({
+            //             'id': 'covid',
+            //             'minzoom': 0,
+            //             'type': 'fill',
+            //             'source': 'dxy0507',
+            //             'source-layer': 'DXYcity0507',
+            //             // 'filter': ['==', 'Time', set_year],
+            // });      
+
             hexagonLayer = new MapboxLayer({
                 type: HexagonLayer,
-                id: 'heatmap',
+                id: 'covid',
                 data: d3.csv(this.covid_url),
                 radius: 1000,
                 coverage: 1,
@@ -118,7 +133,7 @@ export default {
                 // elevationRange: [0, 1000],
                 elevationScale: 1000,
                 extruded: true,
-                getPosition: d => [Number(d.Longitude), Number(d.Latitude)],//[Number(d.lng), Number(d.lat)],
+                getPosition: d => [Number(d.Longitude), Number(d.Latitude)],
                 getElevation: d => {
                     return Number(d.city_confirmedCount);
                 },
@@ -127,6 +142,8 @@ export default {
             });
             // Add the deck.gl hex layer below labels in the Mapbox map
             this.map.addLayer(hexagonLayer, 'waterway-label');
+            // var filters = ['==', 'cityEnglishName', "Chongqing"];
+            // this.map.setFilter('covid',filters);
         });
         
     }
