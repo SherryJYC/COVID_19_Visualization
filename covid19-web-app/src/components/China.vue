@@ -38,9 +38,9 @@
 
 <script>
 import { mapboxgl } from "@/main";
-import {HexagonLayer} from '@deck.gl/aggregation-layers';
-import {MapboxLayer} from '@deck.gl/mapbox';
-import * as d3 from "d3";
+// import {HexagonLayer} from '@deck.gl/aggregation-layers';
+// import {MapboxLayer} from '@deck.gl/mapbox';
+// import * as d3 from "d3";
 
 // var csv2geojson = require('csv2geojson');
 
@@ -54,29 +54,12 @@ export default {
       { title: "Total Recovered", value: 79077 }
     ],
     token:
-      "pk.eyJ1IjoibW1jYXJ0b2cwMSIsImEiOiJjazk2bHZlbW8wOW5xM250Y2ZkbXNnZGdjIn0.QS71DsIq1oSDNUgEmfA3kg",
+    "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNqb2pteTAzdjA2YmszdXBqanZ2YmNlM2wifQ.2_9XWJxI8fDvh4d_hLlrWA",
     csv_url: // trial of deck.gl example
     'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv',
     covid_url: // data of COVID19 updated in 7 May
     'data/DXYcity0507.csv',
-
-    COLOR_RANGE:
-    [
-            [1, 152, 189],
-            [73, 227, 206],
-            [216, 254, 181],
-            [254, 237, 177],
-            [254, 173, 84],
-            [209, 55, 78]
-        ],
-    LIGHT_SETTINGS:{
-            lightsPosition: [-0.144528, 49.739968, 8000, -3.807751, 54.104682, 8000],
-            ambientRatio: 0.4,
-            diffuseRatio: 0.6,
-            specularRatio: 0.2,
-            lightsStrength: [0.8, 0.0, 0.8, 0.0],
-            numberOfLights: 2
-        },
+    data_url:'mapbox://sherryjyc.7xgdtkm5'
   }),
   created() {
     this.map = null;
@@ -100,48 +83,81 @@ export default {
             container: document.getElementById("china-map"),
             style: 'mapbox://styles/mapbox/dark-v10?optimize=true',
             center: [114.299935,30.595105], // use long, lat of Wuhan
+            minZoom:4,
+            maxZoom:10,
             zoom: 4,
             pitch: 40.5,
             antialias: true
         });
 
-        var hexagonLayer;
+        // var hexagonLayer;
         //Add the deck.gl Custom Layer to the map once the Mapbox map loads
         this.map.on('style.load', () => {
 
-            // this.map.addSource('dxy0507', {
-            //             'type': 'geojson',
-            //              'data': data
-            // });
-            // this.map.addLayer({
-            //             'id': 'covid',
-            //             'minzoom': 0,
-            //             'type': 'fill',
-            //             'source': 'dxy0507',
-            //             'source-layer': 'DXYcity0507',
-            //             // 'filter': ['==', 'Time', set_year],
-            // });      
-
-            hexagonLayer = new MapboxLayer({
-                type: HexagonLayer,
-                id: 'covid',
-                data: d3.csv(this.covid_url),
-                radius: 1000,
-                coverage: 1,
-                upperPercentile: 100,
-                colorRange: this.COLOR_RANGE,
-                // elevationRange: [0, 1000],
-                elevationScale: 1000,
-                extruded: true,
-                getPosition: d => [Number(d.Longitude), Number(d.Latitude)],
-                getElevation: d => {
-                    return Number(d.city_confirmedCount);
-                },
-                lightSettings: this.LIGHT_SETTINGS,
-                opacity: 1
+           this.map.addSource('dxy0507', {
+                        'type': 'vector',
+                        'url': 'mapbox://sherryjyc.7xgdtkm5',
+                        'minzoom': 4,
             });
+            this.map.addLayer({
+              'id': 'covid',
+              'source': 'dxy0507',
+              'source-layer': 'DXY0507_Polygon5-3e9elo',
+              'filter': ['==', 'Date', '02-27'],
+              'type': 'fill-extrusion',
+              'minzoom': 4,
+              'paint': {
+              'fill-extrusion-color': [
+                "interpolate",
+                ["linear"],
+                [
+                  "get",
+                  "city_confirmedCount"
+                ],
+                10,
+                "#007A96",
+                50,
+                "#72791C",
+                200,
+                "#485A2C",
+                1000,
+                "#956013",
+                10000,
+                "#A8322D",
+              ],
+              
+              // use an 'interpolate' expression to add a smooth transition effect to the
+              // buildings as the user zooms in
+              'fill-extrusion-height': [
+                '*',
+                ['get', 'city_confirmedCount'],
+                10
+              ],
+              'fill-extrusion-base': 0,
+              'fill-extrusion-opacity': 0.6
+              }
+            });      
+
+            // hexagonLayer = new MapboxLayer({
+            //     type: HexagonLayer,
+            //     id: 'covid',
+            //     data: d3.csv(this.covid_url),
+            //     radius: 1000,
+            //     coverage: 1,
+            //     upperPercentile: 100,
+            //     colorRange: this.COLOR_RANGE,
+            //     // elevationRange: [0, 1000],
+            //     elevationScale: 1000,
+            //     extruded: true,
+            //     getPosition: d => [Number(d.Longitude), Number(d.Latitude)],
+            //     getElevation: d => {
+            //         return Number(d.city_confirmedCount);
+            //     },
+            //     lightSettings: this.LIGHT_SETTINGS,
+            //     opacity: 1
+            // });
             // Add the deck.gl hex layer below labels in the Mapbox map
-            this.map.addLayer(hexagonLayer, 'waterway-label');
+            // this.map.addLayer(hexagonLayer, 'waterway-label');
             // var filters = ['==', 'cityEnglishName', "Chongqing"];
             // this.map.setFilter('covid',filters);
         });
