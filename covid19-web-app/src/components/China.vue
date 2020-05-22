@@ -54,7 +54,7 @@ export default {
       { title: "Total Recovered", value: 79077 }
     ],
     token:
-    "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNqb2pteTAzdjA2YmszdXBqanZ2YmNlM2wifQ.2_9XWJxI8fDvh4d_hLlrWA",
+    "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNrYWhuNnUyaDBpMW8yeHQ5YmU5bjRxbmYifQ.rTKiRvlmkUa2IfJl9ToD9g",
     csv_url: // trial of deck.gl example
     'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv',
     covid_url: // data of COVID19 updated in 7 May
@@ -63,22 +63,11 @@ export default {
   }),
   created() {
     this.map = null;
-    this.deck = null;
+    // this.deck = null;
   },
   methods: {
-    // initMap: function() {
-    //   mapboxgl.accessToken = this.token;
-
-    //   this.map = new mapboxgl.Map({
-    //     container: "china-map",
-    //     style: "mapbox://styles/mapbox/light-v10",
-    //     center: [-1.4157, 52.2324],
-    //     zoom: 6
-    //   });
-
-  },
-  mounted() {
-        mapboxgl.accessToken = this.token;
+    initMap: function() {
+       mapboxgl.accessToken = this.token;
          this.map = new mapboxgl.Map({
             container: document.getElementById("china-map"),
             style: 'mapbox://styles/mapbox/dark-v10?optimize=true',
@@ -89,9 +78,12 @@ export default {
             pitch: 40.5,
             antialias: true
         });
+    }
 
-        // var hexagonLayer;
-        //Add the deck.gl Custom Layer to the map once the Mapbox map loads
+  },
+  mounted() {
+        this.initMap();
+
         this.map.on('style.load', () => {
 
            this.map.addSource('dxy0507', {
@@ -103,7 +95,7 @@ export default {
               'id': 'covid',
               'source': 'dxy0507',
               'source-layer': 'DXY0507_Polygon5-3e9elo',
-              'filter': ['==', 'Date', '02-27'],
+              'filter': ['==', 'Date', '04-27'], // 04-27 for wuhan
               'type': 'fill-extrusion',
               'minzoom': 4,
               'paint': {
