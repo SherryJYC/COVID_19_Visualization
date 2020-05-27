@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <v-app-bar app color="white" height="100">
+    <v-app-bar app color="white" height="80">
       <div class="d-flex align-center">
         <v-img
           class="shrink mr-3"
           contain
           :src="require('./assets/logo.svg')"
           transition="scale-transition"
-          width="70"
+          width="60"
         />
 
         <v-toolbar-title class="font-weight-black headline">COVID-19 Dashboard</v-toolbar-title>

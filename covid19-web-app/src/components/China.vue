@@ -9,26 +9,25 @@
 
       <v-row>
         <v-col>
-
-         <b-tabs>
-          <b-tab title="Confirmed" active @click="setExtrusion(optionalFields[0])"></b-tab>
-          <b-tab title="Cured" @click="setExtrusion(optionalFields[1])"></b-tab>
-          <b-tab title="Dead" @click="setExtrusion(optionalFields[2])"></b-tab>
-        </b-tabs>
+        <div>
+          <b-button class="btn" @click="setExtrusion(optionalFields[0])">Confirmed</b-button>
+          <b-button class="btn" variant="success" @click="setExtrusion(optionalFields[1])">Cured</b-button>
+          <b-button class="btn" variant="danger" @click="setExtrusion(optionalFields[2])">Dead</b-button>
+        </div>
 
          <div class="deck-container">
             <div id="china-map" ref="map"></div>
-            
-            <div>
+
               <!-- Timeline -->
-              <label id="month"></label>
+              
               <b-btn class="play">
                 <BIconPlayFill id="playicon"/>
                 <BIconPauseFill id="stopicon"/>
               </b-btn>
-              
+
+              <input type="text"  id="date" readonly>         
               <input class="slider" type="range" min="1" max="95" step="1" value="1" />
-            </div>
+
               <!-- legend -->
             <div class='legend-container'>
             <div class='legend' id='legend' >
@@ -119,6 +118,7 @@ export default {
     filterBy: function(date) {
       var filters = ['==', 'Date', date];
       this.map.setFilter('covid', filters);
+      $('#date').val(date);
       
       // TODO: Set the label 
       
@@ -265,6 +265,15 @@ export default {
 #stopicon{
   visibility:hidden;
 }
+.btn{
+  margin-right: 3.3%;
+  width: 30%;
+}
+.play{
+  margin-right:10px;
+  width: 20%;
+}
+
 .slider {
   -webkit-appearance: none;
   width: 100%;
