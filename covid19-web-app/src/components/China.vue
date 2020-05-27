@@ -9,34 +9,39 @@
 
       <v-row>
         <v-col>
-         <h2>China COVID Map</h2>
+
+         <b-tabs>
+          <b-tab title="Confirmed" active @click="setExtrusion(optionalFields[0])"></b-tab>
+          <b-tab title="Cured" @click="setExtrusion(optionalFields[1])"></b-tab>
+          <b-tab title="Dead" @click="setExtrusion(optionalFields[2])"></b-tab>
+        </b-tabs>
+
          <div class="deck-container">
-          <div id="china-map" ref="map"></div>
-          
-          <div>
-            <!-- <h4>Timeline</h4> -->
-            <label id="month"></label>
-            <b-btn class="play">
-              <BIconPlayFill id="playicon"/>
-              <BIconPauseFill id="stopicon"/>
-            </b-btn>
+            <div id="china-map" ref="map"></div>
             
-            <input class="slider" type="range" min="1" max="95" step="1" value="1" />
+            <div>
+              <!-- Timeline -->
+              <label id="month"></label>
+              <b-btn class="play">
+                <BIconPlayFill id="playicon"/>
+                <BIconPauseFill id="stopicon"/>
+              </b-btn>
+              
+              <input class="slider" type="range" min="1" max="95" step="1" value="1" />
+            </div>
+              <!-- legend -->
+            <div class='legend-container'>
+            <div class='legend' id='legend' >
+                <h2 class="legend">Confirmed</h2> 
+                <hr/>
+                
+                <!-- Div where the dynamic legend is created  -->	
+                <div class='legend' id='cd-legend' >
+                </div>
+            
+            </div>
           </div>
         </div>
-
-        <div class='legend-container'>
-        <div class='legend' id='legend' >
-            <h2 class="legend">Confirmed</h2> 
-            <hr/>
-            
-            <!-- Div where the dynamic legend is created  -->	
-            <div class='legend' id='cd-legend' >
-            </div>
-        
-        </div>
-        </div>
-
 
         </v-col>
         <v-col>
@@ -89,7 +94,8 @@ export default {
       [200, "#485A2C"],
       [ 1000,"#956013"],
        [10000,"#A8322D"],
-    ]
+    ],
+    optionalFields: ['city_confirmedCount', 'city_curedCount', 'city_deadCount']
   }),
   created() {
     this.map = null;
@@ -116,6 +122,29 @@ export default {
       
       // TODO: Set the label 
       
+    },
+    setExtrusion: function(chosenField){
+      this.map.setPaintProperty('covid', 'fill-extrusion-height', ['*',['get', chosenField],10])
+
+       this.map.setPaintProperty('covid', 'fill-extrusion-color', [
+                "interpolate",
+                ["linear"],
+                [
+                  "get",
+                  chosenField
+                ],
+                10,
+                "#007A96",
+                50,
+                "#72791C",
+                200,
+                "#485A2C",
+                1000,
+                "#956013",
+                10000,
+                "#A8322D",
+        ])
+
     },
     autoPlay: function(playSpeed){
       this.animation = setInterval(this.moveTime,playSpeed);
@@ -160,40 +189,16 @@ export default {
               'id': 'covid',
               'source': 'dxy0507',
               'source-layer': 'DXY0507_Polygon5-3e9elo',
-              // 'filter': ['==', 'Date', '01-27'], // 04-27 for wuhan
               'type': 'fill-extrusion',
               'minzoom': 4,
               'paint': {
-              'fill-extrusion-color': [
-                "interpolate",
-                ["linear"],
-                [
-                  "get",
-                  "city_confirmedCount"
-                ],
-                10,
-                "#007A96",
-                50,
-                "#72791C",
-                200,
-                "#485A2C",
-                1000,
-                "#956013",
-                10000,
-                "#A8322D",
-              ],
-              
-              // use an 'interpolate' expression to add a smooth transition effect to the
-              // buildings as the user zooms in
-              'fill-extrusion-height': [
-                '*',
-                ['get', 'city_confirmedCount'],
-                10
-              ],
               'fill-extrusion-base': 0,
               'fill-extrusion-opacity': 0.6
               }
             });     
+            // set initial filed to confirmed
+            this.setExtrusion(this.optionalFields[0]);
+           
             // set filter
             this.filterBy(this.dates[0]); 
             // help call 'this' when out of scope
@@ -293,7 +298,7 @@ export default {
     .legend {
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
         background-color: white; 
-        padding: 10px;
+        padding: 5px;
         opacity: 0.8;
     }
 
@@ -305,12 +310,12 @@ export default {
     .legend-container {
         position: absolute;
         margin: 5px;
-        top: 60px;
-        left: 10px;
+        top: 120px;
+        left: 5px;
         padding: 0px 10px;
         margin-bottom: 30px;
         z-index: 1;
-        max-width: 300px
+        max-width: 200px
     }
     
     /* Legend title */
