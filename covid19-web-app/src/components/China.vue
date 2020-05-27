@@ -8,7 +8,7 @@
       
 
       <v-row>
-        <v-col>
+        <v-col lg="8">
         <div>
           <b-button class="btn" @click="setExtrusion(optionalFields[0])">Confirmed</b-button>
           <b-button class="btn" variant="success" @click="setExtrusion(optionalFields[1])">Cured</b-button>
@@ -43,7 +43,7 @@
         </div>
 
         </v-col>
-        <v-col>
+        <v-col md="auto">
           <div id="china-chart">Chart</div>
         </v-col>
       </v-row>
@@ -261,6 +261,7 @@ export default {
 <style scoped>
 #china-map {
   height: 600px;
+  width: 100%;
 }
 #stopicon{
   visibility:hidden;
@@ -319,7 +320,7 @@ export default {
     .legend-container {
         position: absolute;
         margin: 5px;
-        top: 120px;
+        top: 60px;
         left: 5px;
         padding: 0px 10px;
         margin-bottom: 30px;
