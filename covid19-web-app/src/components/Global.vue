@@ -7,7 +7,11 @@
       <div class="py-5"></div>
       <v-row>
         <v-col>
-          <div>HERE GOES THE BAR CHART RACE</div>
+          <div
+            class="flourish-embed flourish-bar-chart-race"
+            data-src="visualisation/2647201"
+            data-url="https://flo.uri.sh/visualisation/2647201/embed"
+          ></div>
         </v-col>
       </v-row>
     </v-container>
