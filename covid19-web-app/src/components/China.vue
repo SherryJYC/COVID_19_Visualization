@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { mapboxgl } from "@/main";
+import mapboxgl from "mapbox-gl";
 import {dates} from "../assets/json/dates"
 import JQuery from 'jquery';
 
