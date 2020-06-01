@@ -8,23 +8,23 @@
            <v-row>
         <v-col lg="8">
         <div>
-          <b-button :pressed="true" class="btn-tab" @click="setField(0)">Confirmed</b-button>
-          <b-button class="btn-tab" @click="setField(1)">Cured</b-button>
-          <b-button class="btn-tab" @click="setField(2)">Dead</b-button>
+          <b-button :pressed="true" class="btn-tab2" @click="setField(0)">Confirmed</b-button>
+          <b-button class="btn-tab2" @click="setField(1)">Cured</b-button>
+          <b-button class="btn-tab2" @click="setField(2)">Dead</b-button>
         </div>
 
-         <div class="deck-container">
+         <div class="deck-container2">
             <div id="sars-map" ref="map"></div>
 
               <!-- Timeline -->
-            <div class="time-container">
-              <div class="time">
+            <div class="time-container2">
+              <div class="time2">
                 <v-btn
                   :color="playcolor"
                   dark
                   depressed
                   fab
-                  class="play"
+                  class="play2"
                   @click="toggle"
                 >
                 <v-icon large>
@@ -32,19 +32,19 @@
                 </v-icon>
               </v-btn>
 
-                <input type="text"  id="date" readonly>         
-                <input class="slider" type="range" min="1" max="95" step="1" value="1" />
+                <input type="text"  id="date2" readonly>         
+                <input class="slider2" type="range" min="1" max="95" step="1" value="1" />
               </div>
             </div>
 
               <!-- legend -->
-            <div class='legend-container'>
-            <div class='legend' id='legend' >
-                <h2 class="legend">Confirmed</h2> 
+            <div class='legend-container2'>
+            <div class='legend2' id='legend2' >
+                <h2 class="legend2">Confirmed</h2> 
                 <hr/>
                 
                 <!-- Div where the dynamic legend is created  -->	
-                <div class='legend' id='cd-legend' >
+                <div class='legend2' id='cd-legend2' >
                 </div>
             
             </div>
@@ -133,7 +133,7 @@ export default {
       });
     },
  setExtrusion: function(chosenDate, layerName){
-      $('#date').val(chosenDate+"-2020");
+      $('#date2').val(chosenDate+"-2020");
       this.map.setPaintProperty(layerName, 'fill-extrusion-height', ['*',['get', chosenDate],10])
       this.map.setPaintProperty(layerName, 'fill-extrusion-color', [
                 "interpolate",
@@ -174,14 +174,14 @@ export default {
       this.isPlaying = !this.isPlaying;
     },
     moveTime: function(){
-      var currentDate = parseInt($('.slider').val());   
+      var currentDate = parseInt($('.slider2').val());   
       currentDate+=1;
       // if already at latest date, start from beginning 
       if (currentDate == 96){
         currentDate = 1;
       }  
-      $('.slider').val(currentDate);
-      $('.slider').trigger('change');
+      $('.slider2').val(currentDate);
+      $('.slider2').trigger('change');
     }
   },
   mounted() {
@@ -197,7 +197,7 @@ export default {
             ];	
         var breaksRev = this.breaks.slice().reverse();
         var legendLabelsRev = legendLabels.slice().reverse();
-        var legend = document.getElementById('cd-legend'); 
+        var legend = document.getElementById('cd-legend2'); 
 
         this.map.on('style.load', () => {
             // add source and layer
@@ -251,13 +251,14 @@ export default {
 
             // timeline and legend
 
-            $('.slider').change(function(e) {
+            $('.slider2').change(function(e) {
                 var date = parseInt(e.target.value)-1;
                 ref.currentDate = ref.dates[date];
+                console.log(ref.currentDate)
                 ref.setExtrusion(ref.currentDate,ref.optionalFields[ref.currentLayer][0]);
             });
             
-            $('.play').click(function () {
+            $('.play2').click(function () {
               if (ref.play == true){
                   ref.autoPlay(playSpeed);
                   ref.play = false;
@@ -280,7 +281,7 @@ export default {
               key.textContent = "|";
 
               // give the value variable a placeholder id that we can access and update with custom labels
-              value.id = 'legend-value-' + i;
+              value.id = '2legend-value-' + i;
                           
               item.appendChild(key); 
               item.appendChild(value);
@@ -289,13 +290,13 @@ export default {
                 
           legendLabelsRev.forEach(function(layer, i){
             //as we iterate through the arrays get the correct row, and add the appropriate text 
-            document.getElementById('legend-value-' + i).textContent = layer[0];             
+            document.getElementById('2legend-value-' + i).textContent = layer[0];             
            });  
 
         });
         // change color for buttons
-        $(".btn-tab").click(function(){
-          $(".btn-tab").removeClass("active");
+        $(".btn-tab2").click(function(){
+          $(".btn-tab2").removeClass("active");
           $(this).addClass("active");
         });
 
@@ -308,21 +309,21 @@ export default {
   height: 600px;
   width: 100%;
 }
-.btn-tab{
+.btn-tab2{
   margin-right: 2.3%;
   margin-left: 1%;
   width: 30%;
   margin-bottom: 1%;
 }
 
-.play{
+.play2{
   margin-right:10px;
   margin-bottom: 5px;
   width: 20%;
   background-color: #A8322D
 }
 /* time slider */
-.slider {
+.slider2 {
   -webkit-appearance: none;
   width: 100%;
   height: 15px;
@@ -333,7 +334,7 @@ export default {
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
-.slider::-webkit-slider-thumb {
+.slider2::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 25px;
@@ -343,14 +344,14 @@ export default {
   cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
+.slider2::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
   background: #4CAF50;
   cursor: pointer;
 }
-.time-container {
+.time-container2 {
   position: absolute;
   margin: 5px;
   top: 536px;
@@ -360,23 +361,23 @@ export default {
   z-index: 1;
   max-width: 500px;
 }
-.time{
+.time2{
  background-color: white; 
   opacity: 0.8;
   padding: 5px;
 }
 /* Mapbox Legend */
-    .legend {
+    .legend2 {
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
         background-color: white; 
         padding: 5px;
         opacity: 0.8;
     }
 
-    #cd-legend {
+    #cd-legend2 {
         text-align: left;
     }
-    .legend-container {
+    .legend-container2 {
         position: absolute;
         margin: 5px;
         top: 60px;
@@ -388,13 +389,13 @@ export default {
     }
     
     /* Legend title */
-    .legend h2 {
+    .legend2 h2 {
         padding-top: 8px;
         margin:0;
         text-align: center;
     }
 
-    .legend hr {
+    .legend2 hr {
         color: #123455; 
         border: 0; 
         border-top: 1px solid #ccc; 
