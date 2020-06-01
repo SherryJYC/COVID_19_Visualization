@@ -10,23 +10,34 @@
       <v-row>
         <v-col lg="8">
         <div>
-          <b-button class="btn" @click="setExtrusion(optionalFields[0])">Confirmed</b-button>
-          <b-button class="btn" variant="success" @click="setExtrusion(optionalFields[1])">Cured</b-button>
-          <b-button class="btn" variant="danger" @click="setExtrusion(optionalFields[2])">Dead</b-button>
+          <b-button :pressed="true" class="btn-tab" @click="setField(0)">Confirmed</b-button>
+          <b-button class="btn-tab" @click="setField(1)">Cured</b-button>
+          <b-button class="btn-tab" @click="setField(2)">Dead</b-button>
         </div>
 
          <div class="deck-container">
             <div id="china-map" ref="map"></div>
 
               <!-- Timeline -->
-              
-              <b-btn class="play">
-                <BIconPlayFill id="playicon"/>
-                <BIconPauseFill id="stopicon"/>
-              </b-btn>
+            <div class="time-container">
+              <div class="time">
+                <v-btn
+                  :color="playcolor"
+                  dark
+                  depressed
+                  fab
+                  class="play"
+                  @click="toggle"
+                >
+                <v-icon large>
+                  {{ isPlaying ? 'mdi-pause' : 'mdi-play' }}
+                </v-icon>
+              </v-btn>
 
-              <input type="text"  id="date" readonly>         
-              <input class="slider" type="range" min="1" max="95" step="1" value="1" />
+                <input type="text"  id="date" readonly>         
+                <input class="slider" type="range" min="1" max="95" step="1" value="1" />
+              </div>
+            </div>
 
               <!-- legend -->
             <div class='legend-container'>
@@ -69,6 +80,10 @@ import JQuery from 'jquery';
 
 let $ = JQuery;
 var playSpeed = 200;
+let popup = new mapboxgl.Popup({
+                        closeButton: false,
+                        closeOnClick: false
+                    });
 
 export default {
   name: "China",
@@ -79,13 +94,12 @@ export default {
       { title: "Total Deaths", value: 4643 },
       { title: "Total Recovered", value: 79077 }
     ],
+    isPlaying: false,
+    playcolor: "#A8322D",
     token:
     "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNrYWhuNnUyaDBpMW8yeHQ5YmU5bjRxbmYifQ.rTKiRvlmkUa2IfJl9ToD9g",
-    // csv_url: // trial of deck.gl example
-    // 'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv',
-    // covid_url: // data of COVID19 updated in 7 May
-    // 'data/DXYcity0507.csv',
-    data_url:'mapbox://sherryjyc.7xgdtkm5',
+    // data_url:'mapbox://sherryjyc.7xgdtkm5',
+    all_url: ['mapbox://sherryjyc.7aotoxrd','mapbox://sherryjyc.5z7vqhli','mapbox://sherryjyc.1399awho'],
     dates,
     breaks: [
       [10,"#007A96"],
@@ -94,12 +108,15 @@ export default {
       [ 1000,"#956013"],
        [10000,"#A8322D"],
     ],
-    optionalFields: ['city_confirmedCount', 'city_curedCount', 'city_deadCount']
+    optionalFields: [['dxy_confirmed','DXYcity_confirmed_polygon4-a1tfez'],
+    ['dxy_cured','DXYcity_cured_polygon4-7b7exw'],['dxy_dead','DXYcity_dead_polygon4-90rj8p']]
   }),
   created() {
     this.map = null;
     this.animation = null;
     this.play = true;
+    this.currentLayer = 0;
+    this.currentDate = '01-24';
   },
   methods: {
     initMap: function() {
@@ -107,31 +124,29 @@ export default {
          this.map = new mapboxgl.Map({
             container: document.getElementById("china-map"),
             style: 'mapbox://styles/mapbox/dark-v10?optimize=true',
-            center: [114.299935,30.595105], // use long, lat of Wuhan
+            center: [112,29], // use long, lat of Wuhan
             minZoom:4,
-            maxZoom:10,
+            maxZoom:8,
             zoom: 4,
             pitch: 45,
             antialias: true
         });
     },
-    filterBy: function(date) {
-      var filters = ['==', 'Date', date];
-      this.map.setFilter('covid', filters);
-      $('#date').val(date);
+    // filterBy: function(date) {
+    //   var filters = ['==', 'Date', date];
+    //   this.map.setFilter('covid', filters);
+    //   $('#date').val(date);
       
-      // TODO: Set the label 
-      
-    },
-    setExtrusion: function(chosenField){
-      this.map.setPaintProperty('covid', 'fill-extrusion-height', ['*',['get', chosenField],10])
-
-       this.map.setPaintProperty('covid', 'fill-extrusion-color', [
+    // },
+    setExtrusion: function(chosenDate, layerName){
+      $('#date').val(chosenDate+"-2020");
+      this.map.setPaintProperty(layerName, 'fill-extrusion-height', ['*',['get', chosenDate],10])
+      this.map.setPaintProperty(layerName, 'fill-extrusion-color', [
                 "interpolate",
                 ["linear"],
                 [
                   "get",
-                  chosenField
+                  chosenDate
                 ],
                 10,
                 "#007A96",
@@ -146,9 +161,23 @@ export default {
         ])
 
     },
+    setField: function(chosenField){
+      // clear previous popup before changing field
+      popup.remove();
+      // chosenField = 0, 1, 2
+      // make current layer unvisible
+      this.map.setLayoutProperty(this.optionalFields[this.currentLayer][0], 'visibility', 'none');
+      // change current layer
+      this.currentLayer = chosenField; 
+      this.map.setLayoutProperty(this.optionalFields[this.currentLayer][0], 'visibility', 'visible');
+      this.setExtrusion(this.currentDate,this.optionalFields[this.currentLayer][0]);
+
+    },
     autoPlay: function(playSpeed){
       this.animation = setInterval(this.moveTime,playSpeed);
-
+    },
+    toggle: function(){
+      this.isPlaying = !this.isPlaying;
     },
     moveTime: function(){
       var currentDate = parseInt($('.slider').val());   
@@ -160,8 +189,6 @@ export default {
       $('.slider').val(currentDate);
       $('.slider').trigger('change');
     }
-
-
   },
   mounted() {
         this.initMap();
@@ -179,54 +206,74 @@ export default {
         var legend = document.getElementById('cd-legend'); 
 
         this.map.on('style.load', () => {
-
-           this.map.addSource('dxy0507', {
+            // add source and layer
+            for (var i=0; i<3; i++){
+               this.map.addSource(this.optionalFields[i][0], {
                         'type': 'vector',
-                        'url': 'mapbox://sherryjyc.7xgdtkm5',
+                        'url': this.all_url[i],
                         'minzoom': 4,
-            });
-            this.map.addLayer({
-              'id': 'covid',
-              'source': 'dxy0507',
-              'source-layer': 'DXY0507_Polygon5-3e9elo',
-              'type': 'fill-extrusion',
-              'minzoom': 4,
-              'paint': {
-              'fill-extrusion-base': 0,
-              'fill-extrusion-opacity': 0.6
-              }
-            });     
-            // set initial filed to confirmed
-            this.setExtrusion(this.optionalFields[0]);
-           
-            // set filter
-            this.filterBy(this.dates[0]); 
-            // help call 'this' when out of scope
+              });
+              this.map.addLayer({
+                'id': this.optionalFields[i][0],
+                'source': this.optionalFields[i][0],
+                'source-layer':this.optionalFields[i][1],
+                'type': 'fill-extrusion',
+                'minzoom': 4,
+                'paint': {
+                'fill-extrusion-base': 0,
+                'fill-extrusion-opacity': 0.6
+                }
+              });    
+               // show popup window when clicked
+              // when user click layer, show info window
+              this.map.on('click', this.optionalFields[i][0], function(e) {
+                          if (e.features.length > 0) {
+                              var propObj = e.features[0].properties;
+                              var line1 = '<strong>'+propObj.city+'</strong><br/>';
+                              popup.remove();
+                              // show popup
+                              popup
+                              .setLngLat(e.lngLat)
+                              .setHTML(line1)
+                              .addTo(ref.map);
+                          }
+                      });
+              this.map.on('mouseenter', this.optionalFields[i][0], function() {
+                ref.map.getCanvas().style.cursor = 'pointer';
+              });
+              
+              // Change it back to a pointer when it leaves.
+              this.map.on('mouseleave', this.optionalFields[i][0], function() {
+                ref.map.getCanvas().style.cursor = '';
+              });
+            }
+            // initial state: only confirmed layer is visible
+            this.map.setLayoutProperty(this.optionalFields[1][0], 'visibility', 'none');
+            this.map.setLayoutProperty(this.optionalFields[2][0], 'visibility', 'none');
+            // initial date is the first date: 01-24
+            this.setExtrusion(this.currentDate,this.optionalFields[0][0]);
+
             var ref = this;
+
+            // timeline and legend
 
             $('.slider').change(function(e) {
                 var date = parseInt(e.target.value)-1;
-                ref.filterBy(ref.dates[date]);
+                ref.currentDate = ref.dates[date];
+                ref.setExtrusion(ref.currentDate,ref.optionalFields[ref.currentLayer][0]);
             });
-            // set auto play of slider
-
-            var stopicon = document.getElementById("stopicon")
-            var playicon = document.getElementById("playicon");
             
             $('.play').click(function () {
               if (ref.play == true){
                   ref.autoPlay(playSpeed);
                   ref.play = false;
-                  stopicon.style.visibility = "visible";
-                  playicon.style.visibility = "hidden";
               }
               else {
                 clearInterval(ref.animation);
                 ref.play = true;
-                stopicon.style.visibility = "hidden";
-                playicon.style.visibility = "visible";
               }
           });
+          // set legend inside map
           breaksRev.forEach(function(layer, i){
               var item = document.createElement('div');
               var key = document.createElement('span');
@@ -252,8 +299,12 @@ export default {
            });  
 
         });
+        // change color for buttons
+        $(".btn-tab").click(function(){
+          $(".btn-tab").removeClass("active");
+          $(this).addClass("active");
+        });
 
-        
     }
 };
 </script>
@@ -263,18 +314,20 @@ export default {
   height: 600px;
   width: 100%;
 }
-#stopicon{
-  visibility:hidden;
-}
-.btn{
-  margin-right: 3.3%;
+.btn-tab{
+  margin-right: 2.3%;
+  margin-left: 1%;
   width: 30%;
-}
-.play{
-  margin-right:10px;
-  width: 20%;
+  margin-bottom: 1%;
 }
 
+.play{
+  margin-right:10px;
+  margin-bottom: 5px;
+  width: 20%;
+  background-color: #A8322D
+}
+/* time slider */
 .slider {
   -webkit-appearance: none;
   width: 100%;
@@ -286,7 +339,6 @@ export default {
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
-
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -304,6 +356,21 @@ export default {
   background: #4CAF50;
   cursor: pointer;
 }
+.time-container {
+  position: absolute;
+  margin: 5px;
+  top: 536px;
+  right: 5px;
+  padding: 0px 8px;
+  margin-bottom: 30px;
+  z-index: 1;
+  max-width: 500px;
+}
+.time{
+ background-color: white; 
+  opacity: 0.8;
+  padding: 5px;
+}
 /* Mapbox Legend */
     .legend {
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -315,8 +382,6 @@ export default {
     #cd-legend {
         text-align: left;
     }
-    
-    /* legend test */
     .legend-container {
         position: absolute;
         margin: 5px;
@@ -343,6 +408,9 @@ export default {
         margin-top:5px;
         margin-bottom:5px
     }
-        
+    /* Button style */
+   .active {
+  background-color: #A8322D !important;
+}     
     
 </style>
