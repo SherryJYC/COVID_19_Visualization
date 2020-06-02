@@ -239,8 +239,8 @@ export default {
               this.map.on('click', this.optionalFields[i][0], function(e) {
                           if (e.features.length > 0) {
                               var propObj = e.features[0].properties;
-                              var line1 = '<strong>'+propObj.province+'</strong><br/>';
-                              var line2 = '<strong>'+Math.round(propObj[ref.currentDate])+'</strong><br/>';
+                              var line1 = '<div style="color:black;"><strong>'+propObj.province+'</strong><br/>';
+                              var line2 = '<strong>'+Math.round(propObj[ref.currentDate])+'</strong><br/></div>';
                               popup.remove();
                               // show popup
                               popup
