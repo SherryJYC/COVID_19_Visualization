@@ -224,11 +224,12 @@ export default {
                           if (e.features.length > 0) {
                               var propObj = e.features[0].properties;
                               var line1 = '<strong>'+propObj.city+'</strong><br/>';
+                              var line2 = '<strong>'+Math.round(propObj[ref.currentDate])+'</strong><br/>';
                               popup.remove();
                               // show popup
                               popup
                               .setLngLat(e.lngLat)
-                              .setHTML(line1)
+                              .setHTML(line1+line2)
                               .addTo(ref.map);
                           }
                       });
@@ -252,6 +253,7 @@ export default {
             // timeline and legend
 
             $('.slider').change(function(e) {
+                popup.remove();
                 var date = parseInt(e.target.value)-1;
                 ref.currentDate = ref.dates[date];
                 ref.setExtrusion(ref.currentDate,ref.optionalFields[ref.currentLayer][0]);
