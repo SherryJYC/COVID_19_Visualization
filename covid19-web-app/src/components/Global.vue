@@ -5,7 +5,8 @@
 
       <h2 class="display-3 font-weight-bold mb-3">Global COVID-19</h2>
       <b-card class="black-content">
-        COVID19 is a global disease .... <b>Placeholder for Text</b>
+        COVID19 is a global disease ....
+        <b>Placeholder for Text</b>
       </b-card>
       <div class="py-5"></div>
       <v-row>
@@ -15,6 +16,7 @@
             data-src="visualisation/2647201"
             data-url="https://flo.uri.sh/visualisation/2647201/embed"
           ></div>
+          <!-- <Chart v-bind="chart" /> -->
         </v-col>
       </v-row>
     </v-container>
@@ -33,20 +35,29 @@
 </template>
 
 <script>
+// import Chart from "./Chart";
+
 export default {
   name: "Global",
+  components: {
+    // Chart
+  },
 
   data: () => ({
     stats: [
       { title: "Total Confirmed", value: 3524429 },
       { title: "Total Deaths", value: 247838 },
       { title: "Total Recovered", value: 1132553 }
-    ]
+    ],
+    chart: {
+      race_data: "visualisation/2647201",
+      race_url: "https://flo.uri.sh/visualisation/2647201/embed"
+    }
   })
 };
 </script>
 <style scoped>
-.black-content{
+.black-content {
   background-color: #121212;
 }
 </style>
