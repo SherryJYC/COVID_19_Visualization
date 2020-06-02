@@ -8,20 +8,17 @@
       <b-card>
         COVID19 in China is .... <b>Placeholder for Text</b>
       </b-card>
-      
-
-      <v-row>
-        <v-col lg="8">
+      <!-- COVID China Map -->
+      <b-card-group deck>
+        <b-card class="card-content">
         <div>
           <b-button :pressed="true" class="btn-tab" @click="setField(0)">Confirmed</b-button>
           <b-button class="btn-tab" @click="setField(1)">Cured</b-button>
           <b-button class="btn-tab" @click="setField(2)">Dead</b-button>
         </div>
-
-         <div class="deck-container">
             <div id="china-map" ref="map"></div>
 
-              <!-- Timeline -->
+            <!-- Timeline -->
             <div class="time-container">
               <div class="time">
                 <v-btn
@@ -42,7 +39,7 @@
               </div>
             </div>
 
-              <!-- legend -->
+            <!-- legend -->
             <div class='legend-container'>
             <div class='legend' id='legend' >
                 <h2 class="legend">Confirmed</h2> 
@@ -51,16 +48,25 @@
                 <!-- Div where the dynamic legend is created  -->	
                 <div class='legend' id='cd-legend' >
                 </div>
-            
             </div>
           </div>
-        </div>
-
-        </v-col>
-        <v-col md="auto">
-          <div id="china-chart">Chart</div>
-        </v-col>
-      </v-row>
+        </b-card>
+        <!-- Description of COVID China Map -->
+        <b-card class="card-text">
+          Based on this map... <b>Placeholder for text</b>
+        </b-card>
+      </b-card-group>
+      
+      <!-- COVID China Chart -->
+      <b-card-group deck>
+        <b-card class="card-content">
+           <div id="china-chart">Chart</div>
+        </b-card>
+        <!-- Description of COVID China Chart -->
+        <b-card class="card-text">
+          Based on this chart... <b>Placeholder for text</b>
+        </b-card>
+      </b-card-group>
     </v-container>
     <v-parallax height="300" :src="require('../assets/mask.jpg')">
       <v-container>
@@ -311,7 +317,13 @@ export default {
 <style scoped>
 #china-map {
   height: 600px;
-  width: 100%;
+  max-width: 100%;
+}
+.card-content{
+  max-width: 650%;
+}
+.card-text{
+  max-width: 35%;
 }
 .btn-tab{
   margin-right: 2.3%;
@@ -384,7 +396,7 @@ export default {
     .legend-container {
         position: absolute;
         margin: 5px;
-        top: 60px;
+        top: 58px;
         left: 5px;
         padding: 0px 10px;
         margin-bottom: 30px;

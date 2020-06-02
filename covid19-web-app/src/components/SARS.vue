@@ -9,15 +9,15 @@
         Comparing to SARS in 2003 .... <b>Placeholder for Text</b>
       </b-card>
 
-        <v-row>
-        <v-col lg="8">
+      <!-- SARS China Map -->
+      <b-card-group deck>
+        <b-card class="card-content">
         <div>
           <b-button :pressed="true" class="btn-tab2" @click="setField(0)">Confirmed</b-button>
           <b-button class="btn-tab2" @click="setField(1)">Cured</b-button>
           <b-button class="btn-tab2" @click="setField(2)">Dead</b-button>
         </div>
 
-         <div class="deck-container2">
             <div id="sars-map" ref="map"></div>
 
               <!-- Timeline -->
@@ -53,13 +53,25 @@
             
             </div>
           </div>
-        </div>
+        </b-card>
 
-        </v-col>
-        <v-col md="auto">
-          <div id="sars-chart">Chart</div>
-        </v-col>
-      </v-row>
+        <!-- Description of SARS China Map -->
+        <b-card class="card-text">
+          Based on this map... <b>Placeholder for text</b>
+        </b-card>
+
+      </b-card-group>
+       <!-- SARS China Chart -->
+      <b-card-group deck>
+        <b-card class="card-content">
+           <div id="sars-chart">Chart</div>
+        </b-card>
+        <!-- Description of SARS China Chart -->
+        <b-card class="card-text">
+          Based on this chart... <b>Placeholder for text</b>
+        </b-card>
+      </b-card-group>
+
     </v-container>
     <v-parallax height="300" :src="require('../assets/mask.jpg')">
       <v-container>
@@ -313,6 +325,12 @@ export default {
 #sars-map {
   height: 600px;
   width: 100%;
+}
+.card-content{
+  max-width: 650%;
+}
+.card-text{
+  max-width: 35%;
 }
 .btn-tab2{
   margin-right: 2.3%;
