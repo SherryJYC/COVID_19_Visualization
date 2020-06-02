@@ -33,7 +33,7 @@
               </v-btn>
 
                 <input type="text"  id="date2" readonly>         
-                <input class="slider2" type="range" min="1" max="95" step="1" value="1" />
+                <input class="slider2" type="range" min="1" max="92" step="1" value="1" />
               </div>
             </div>
 
@@ -73,7 +73,7 @@
 
 <script>
 import mapboxgl from "mapbox-gl";
-import {dates} from "../assets/json/dates"
+import {sars_dates} from "../assets/json/dates"
 import JQuery from 'jquery';
 
 let $ = JQuery;
@@ -98,24 +98,24 @@ export default {
     token:
     "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNrYWhuNnUyaDBpMW8yeHQ5YmU5bjRxbmYifQ.rTKiRvlmkUa2IfJl9ToD9g",
     // data_url:'mapbox://sherryjyc.7xgdtkm5',
-    all_url: ['mapbox://sherryjyc.7aotoxrd','mapbox://sherryjyc.5z7vqhli','mapbox://sherryjyc.1399awho'],
-    dates,
+    all_url: ['mapbox://sherryjyc.4oxtpi5r','mapbox://sherryjyc.0eelmzqd','mapbox://sherryjyc.21ovjk24'],
+    dates: sars_dates,
     breaks: [
       [10,"#007A96"],
       [50, "#72791C"],
-      [200, "#485A2C"],
-      [ 1000,"#956013"],
-       [10000,"#A8322D"],
+      [500, "#485A2C"],
+      [1000,"#956013"],
+       [2000,"#A8322D"],
     ],
-    optionalFields: [['dxy_confirmed','DXYcity_confirmed_polygon4-a1tfez'],
-    ['dxy_cured','DXYcity_cured_polygon4-7b7exw'],['dxy_dead','DXYcity_dead_polygon4-90rj8p']]
+    optionalFields: [['sars_confirmed','SARS_confirmed2_polygon4-6khqbr'],
+    ['sars_cured','SARS_cured2_polygon4-d9om1c'],['sars_dead','SARS_dead2_polygon4-4kmjni']]
   }),
   created() {
     this.map = null;
     this.animation = null;
     this.play = true;
     this.currentLayer = 0;
-    this.currentDate = '01-24';
+    this.currentDate = this.dates[0];
   },
   methods: {
     initMap: function() {
@@ -133,8 +133,8 @@ export default {
       });
     },
  setExtrusion: function(chosenDate, layerName){
-      $('#date2').val(chosenDate+"-2020");
-      this.map.setPaintProperty(layerName, 'fill-extrusion-height', ['*',['get', chosenDate],10])
+      $('#date2').val(chosenDate);
+      this.map.setPaintProperty(layerName, 'fill-extrusion-height', ['*',['get', chosenDate],100])
       this.map.setPaintProperty(layerName, 'fill-extrusion-color', [
                 "interpolate",
                 ["linear"],
@@ -146,11 +146,11 @@ export default {
                 "#007A96",
                 50,
                 "#72791C",
-                200,
+                500,
                 "#485A2C",
                 1000,
                 "#956013",
-                10000,
+                2000,
                 "#A8322D",
         ])
 
@@ -177,7 +177,7 @@ export default {
       var currentDate = parseInt($('.slider2').val());   
       currentDate+=1;
       // if already at latest date, start from beginning 
-      if (currentDate == 96){
+      if (currentDate == 93){
         currentDate = 1;
       }  
       $('.slider2').val(currentDate);
@@ -189,11 +189,11 @@ export default {
 
         var legendLabels = [
                         // Label text that will appear in the legend [0]
-                                ['< 50'],
-                                ['50 - 200'],
-                                ['200 - 1000'],
-                                ['1000 - 10000'],
-                                ['> 10000'],
+                                ['< 10'],
+                                ['10 - 50'],
+                                ['50 - 500'],
+                                ['500 - 1000'],
+                                ['> 1000'],
             ];	
         var breaksRev = this.breaks.slice().reverse();
         var legendLabelsRev = legendLabels.slice().reverse();
@@ -223,7 +223,7 @@ export default {
               this.map.on('click', this.optionalFields[i][0], function(e) {
                           if (e.features.length > 0) {
                               var propObj = e.features[0].properties;
-                              var line1 = '<strong>'+propObj.city+'</strong><br/>';
+                              var line1 = '<strong>'+propObj.province+'</strong><br/>';
                               popup.remove();
                               // show popup
                               popup
@@ -254,7 +254,6 @@ export default {
             $('.slider2').change(function(e) {
                 var date = parseInt(e.target.value)-1;
                 ref.currentDate = ref.dates[date];
-                console.log(ref.currentDate)
                 ref.setExtrusion(ref.currentDate,ref.optionalFields[ref.currentLayer][0]);
             });
             

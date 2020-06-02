@@ -75,7 +75,7 @@
 
 <script>
 import mapboxgl from "mapbox-gl";
-import {dates} from "../assets/json/dates"
+import {covid_dates} from "../assets/json/dates"
 import JQuery from 'jquery';
 
 let $ = JQuery;
@@ -100,7 +100,7 @@ export default {
     "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNrYWhuNnUyaDBpMW8yeHQ5YmU5bjRxbmYifQ.rTKiRvlmkUa2IfJl9ToD9g",
     // data_url:'mapbox://sherryjyc.7xgdtkm5',
     all_url: ['mapbox://sherryjyc.7aotoxrd','mapbox://sherryjyc.5z7vqhli','mapbox://sherryjyc.1399awho'],
-    dates,
+    dates: covid_dates,
     breaks: [
       [10,"#007A96"],
       [50, "#72791C"],
@@ -116,7 +116,7 @@ export default {
     this.animation = null;
     this.play = true;
     this.currentLayer = 0;
-    this.currentDate = '01-24';
+    this.currentDate = this.dates[0];
   },
   methods: {
     initMap: function() {
@@ -132,12 +132,6 @@ export default {
             antialias: true
         });
     },
-    // filterBy: function(date) {
-    //   var filters = ['==', 'Date', date];
-    //   this.map.setFilter('covid', filters);
-    //   $('#date').val(date);
-      
-    // },
     setExtrusion: function(chosenDate, layerName){
       $('#date').val(chosenDate+"-2020");
       this.map.setPaintProperty(layerName, 'fill-extrusion-height', ['*',['get', chosenDate],10])
