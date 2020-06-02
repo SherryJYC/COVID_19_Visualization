@@ -4,12 +4,12 @@
       <div class="py-12"></div>
 
       <h2 class="display-3 font-weight-bold mb-3">Global COVID-19</h2>
-      <b-card>
+      <b-card class="black-content">
         COVID19 is a global disease .... <b>Placeholder for Text</b>
       </b-card>
       <div class="py-5"></div>
       <v-row>
-        <v-col>
+        <v-col class="black-content">
           <div
             class="flourish-embed flourish-bar-chart-race"
             data-src="visualisation/2647201"
@@ -45,3 +45,8 @@ export default {
   })
 };
 </script>
+<style scoped>
+.black-content{
+  background-color: #121212;
+}
+</style>

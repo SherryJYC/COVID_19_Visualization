@@ -5,13 +5,13 @@
 
       <h2 class="display-3 font-weight-bold mb-3">SARS Status in China</h2>
       <div class="py-5"></div>
-      <b-card>
+      <b-card class="black-content">
         Comparing to SARS in 2003 .... <b>Placeholder for Text</b>
       </b-card>
 
       <!-- SARS China Map -->
       <b-card-group deck>
-        <b-card class="card-content">
+        <b-card class="card-content black-content">
         <div>
           <b-button :pressed="true" class="btn-tab2" @click="setField(0)">Confirmed</b-button>
           <b-button class="btn-tab2" @click="setField(1)">Cured</b-button>
@@ -56,18 +56,18 @@
         </b-card>
 
         <!-- Description of SARS China Map -->
-        <b-card class="card-text">
+        <b-card class="card-text black-content">
           Based on this map... <b>Placeholder for text</b>
         </b-card>
 
       </b-card-group>
        <!-- SARS China Chart -->
       <b-card-group deck>
-        <b-card class="card-content">
-           <div id="sars-chart">Chart</div>
+        <b-card class="card-content black-content">
+           <div id="sars-chart black-content">Chart</div>
         </b-card>
         <!-- Description of SARS China Chart -->
-        <b-card class="card-text">
+        <b-card class="card-text black-content">
           Based on this chart... <b>Placeholder for text</b>
         </b-card>
       </b-card-group>
@@ -326,6 +326,9 @@ export default {
   height: 600px;
   width: 100%;
 }
+.black-content{
+  background-color: #121212;
+}
 .card-content{
   max-width: 650%;
 }
@@ -383,6 +386,7 @@ export default {
   margin-bottom: 30px;
   z-index: 1;
   max-width: 500px;
+  color: black;
 }
 .time2{
  background-color: white; 
@@ -395,6 +399,7 @@ export default {
         background-color: white; 
         padding: 5px;
         opacity: 0.8;
+        color: black;
     }
 
     #cd-legend2 {

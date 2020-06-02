@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="white" height="80">
+    <v-app-bar app height="80">
       <div class="d-flex align-center">
         <v-img
           class="shrink mr-3"
@@ -87,7 +87,10 @@ export default {
 
   data: () => ({
     //
-  })
+  }),
+  created () {
+      this.$vuetify.theme.dark = true
+    },
 };
 </script>
 
