@@ -4,6 +4,9 @@
       <div class="py-12"></div>
 
       <h2 class="display-3 font-weight-bold mb-3">Global COVID-19</h2>
+      <b-card>
+        COVID19 is a global disease .... <b>Placeholder for Text</b>
+      </b-card>
       <div class="py-5"></div>
       <v-row>
         <v-col>

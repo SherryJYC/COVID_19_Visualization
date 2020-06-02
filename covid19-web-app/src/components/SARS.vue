@@ -5,7 +5,11 @@
 
       <h2 class="display-3 font-weight-bold mb-3">SARS Status in China</h2>
       <div class="py-5"></div>
-           <v-row>
+      <b-card>
+        Comparing to SARS in 2003 .... <b>Placeholder for Text</b>
+      </b-card>
+
+        <v-row>
         <v-col lg="8">
         <div>
           <b-button :pressed="true" class="btn-tab2" @click="setField(0)">Confirmed</b-button>

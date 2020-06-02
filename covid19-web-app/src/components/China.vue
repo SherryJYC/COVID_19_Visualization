@@ -5,6 +5,9 @@
 
       <h2 class="display-3 font-weight-bold mb-3">COVID-19 Status in China</h2>
       <div class="py-5"></div>
+      <b-card>
+        COVID19 in China is .... <b>Placeholder for Text</b>
+      </b-card>
       
 
       <v-row>
