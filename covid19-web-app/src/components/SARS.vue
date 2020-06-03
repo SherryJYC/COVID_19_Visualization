@@ -2,8 +2,22 @@
   <div>
     <v-container>
       <div class="py-12"></div>
-
       <h2 class="display-3 font-weight-bold mb-3">SARS Status in China</h2>
+    </v-container>
+
+      <v-parallax height="300" :src="require('../assets/mask.jpg')">
+      <v-container>
+        <v-row>
+          <v-col class="text-center" v-for="stat in stats" :key="stat.title">
+            <span class="display-2 white--text font-weight-regular">{{stat.title}}</span>
+            <div class="py-3"></div>
+            <span class="display-3 white--text font-weight-bold">{{stat.value}}</span>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-parallax>
+
+    <v-container>
       <div class="py-5"></div>
       <b-card class="black-content">
         Comparing to SARS in 2003 ....
@@ -63,17 +77,7 @@
         </b-card>
       </b-card-group>
     </v-container>
-    <v-parallax height="300" :src="require('../assets/mask.jpg')">
-      <v-container>
-        <v-row>
-          <v-col class="text-center" v-for="stat in stats" :key="stat.title">
-            <span class="display-2 white--text font-weight-regular">{{stat.title}}</span>
-            <div class="py-3"></div>
-            <span class="display-3 white--text font-weight-bold">{{stat.value}}</span>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-parallax>
+    
   </div>
 </template>
 
