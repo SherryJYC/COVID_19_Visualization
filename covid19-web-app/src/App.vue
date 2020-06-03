@@ -10,17 +10,20 @@
           width="60"
         />
 
-        <v-toolbar-title class="font-weight-black headline">COVID-19 Dashboard</v-toolbar-title>
+        <v-toolbar-title class="font-weight-black headline">China COVID-19 Dashboard</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
       <v-btn @click="$vuetify.goTo('#global')" text>
-        <span class="mr-2">Global</span>
+        <span class="mr-2">Background</span>
       </v-btn>
       <v-btn @click="$vuetify.goTo('#china')" text>
-        <span class="mr-2">China</span>
+        <span class="mr-2">China COVID-19</span>
       </v-btn>
       <v-btn @click="$vuetify.goTo('#sars')" text>
-        <span class="mr-2">SARS</span>
+        <span class="mr-2">China SARS</span>
+      </v-btn>
+      <v-btn @click="$vuetify.goTo('#compare')" text>
+        <span class="mr-2">Comparison</span>
       </v-btn>
     </v-app-bar>
     <v-content>
@@ -57,7 +60,7 @@
         </v-parallax>
       </section>
       <section id="global">
-        <Global />
+        <Background />
       </section>
       <section id="china">
         <China />
@@ -65,24 +68,29 @@
       <section id="sars">
         <SARS />
       </section>
+      <section id="compare">
+        <Comparison />
+      </section>
     </v-content>
   </v-app>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld';
-import Global from "./components/Global";
-import China from "./components/China";
-import SARS from "./components/SARS";
+import Background from "./components/Background";
+import China from "./components/China"; // China COVID-19
+import SARS from "./components/SARS"; // China SARS
+import Comparison from "./components/Comparison";
 
 export default {
   name: "App",
 
   components: {
     // HelloWorld,
-    Global,
+    Background,
     China,
     SARS,
+    Comparison,
   },
 
   data: () => ({
