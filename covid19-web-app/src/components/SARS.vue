@@ -5,7 +5,7 @@
       <h2 class="display-3 font-weight-bold mb-3">SARS Status in China</h2>
     </v-container>
 
-      <v-parallax height="300" :src="require('../assets/mask.jpg')">
+    <v-parallax height="300" :src="require('../assets/mask.jpg')">
       <v-container>
         <v-row>
           <v-col class="text-center" v-for="stat in stats" :key="stat.title">
@@ -77,7 +77,6 @@
         </b-card>
       </b-card-group>
     </v-container>
-    
   </div>
 </template>
 
@@ -133,9 +132,9 @@ export default {
     chart: [
       {
         name: "confirmed",
-        race_data: "visualisation/2680446",
+        race_data: "visualisation/2694256",
         line_data: "visualisation/2680563",
-        race_url: "https://flo.uri.sh/visualisation/2680446/embed",
+        race_url: "https://flo.uri.sh/visualisation/2694256/embed",
         line_url: "https://flo.uri.sh/visualisation/2680563/embed"
       },
       {
