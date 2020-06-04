@@ -34,12 +34,19 @@
                     Characteristics of COVID-19:
                     <br/>
                     Characteristics of SARS:
+                    <br/>
+                    commons: start from end of December, from bats, 
                 </b-card>
                 <b-card class="black-content">
                     <h3 class="display-2 font-weight-bold mb-3">Government Actions</h3>
                     Difference in government actions:
                     <br/>
-                    The blockdown of Wuhan in COVID-19 case...
+                    The blockdown of Wuhan in COVID-19 case...<br/>
+                    Build up new hospitals more quickly...
+                    <br/>
+                    Commons:
+                    close down animal market, 
+                    build hospitals
                 <b>Placeholder for text</b>
                 </b-card>
             </b-card-group>
