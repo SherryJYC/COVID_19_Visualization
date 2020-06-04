@@ -71,6 +71,9 @@
       <section id="compare">
         <Comparison />
       </section>
+      <section id="imprint">
+        <Imprint />
+      </section>
     </v-content>
   </v-app>
 </template>
@@ -81,6 +84,7 @@ import Background from "./components/Background";
 import China from "./components/China"; // China COVID-19
 import SARS from "./components/SARS"; // China SARS
 import Comparison from "./components/Comparison";
+import Imprint from "./components/Imprint"
 
 export default {
   name: "App",
@@ -91,6 +95,7 @@ export default {
     China,
     SARS,
     Comparison,
+    Imprint
   },
 
   data: () => ({
