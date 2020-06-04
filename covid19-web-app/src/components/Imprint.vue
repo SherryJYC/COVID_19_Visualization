@@ -20,7 +20,7 @@
         class="text-center"
         cols="12"
         >
-        {{ new Date().getFullYear() }} — <strong>Cartography Lab</strong>
+        {{ new Date().getFullYear() }} — <strong>Cartography Lab </strong> ETH Zurich
         </v-col>
     </v-footer>
 
