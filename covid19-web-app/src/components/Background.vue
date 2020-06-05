@@ -27,11 +27,12 @@
       <h3 class="display-2 font-weight-bold mb-3">Origin</h3>
       <b-card-group deck>
         <b-card class="black-content">
-          Map of origin
+          <div id="origin-map"></div>
         </b-card>
         <!-- Description of Origin Map-->
         <b-card class="black-content">
-          Based on this map...
+          The first case of COVID-19 in China was reported in Wuhan, Hubei. The origin of this virus is traced to Wuhan
+          Huanan Wholesale Market.
           <b>Placeholder for text</b>
         </b-card>
       </b-card-group>
@@ -69,6 +70,7 @@
 
 <script>
 // import Chart from "./Chart";
+import mapboxgl from "mapbox-gl";
 
 export default {
   name: "Global",
@@ -85,12 +87,74 @@ export default {
     chart: {
       race_data: "visualisation/2647201",
       race_url: "https://flo.uri.sh/visualisation/2647201/embed"
-    }
-  })
+    },
+    token:
+      "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNrYWhuNnUyaDBpMW8yeHQ5YmU5bjRxbmYifQ.rTKiRvlmkUa2IfJl9ToD9g",
+  }),
+  created(){
+    this.map = null;
+  },
+  methods:{
+     initMap: function() {
+      mapboxgl.accessToken = this.token;
+
+      this.map = new mapboxgl.Map({
+        container: "origin-map",
+        style: "mapbox://styles/mapbox/dark-v10?optimize=true", //"mapbox://styles/mapbox/light-v10",
+        center: [114.261704,30.618000], // use long, lat of Wuhan Huanan Market
+        minZoom: 4,
+        maxZoom: 8,
+        zoom: 4,
+        pitch: 45,
+        antialias: true
+      });
+     }
+  },
+  mounted() {
+    this.initMap();
+    var ref = this;
+    ref.map.on('load', function() {
+      ref.map.loadImage(
+        require('@/assets/coronavirus.png') ,
+        function(error, image) {
+          if (error) throw error;
+          ref.map.addImage('cat', image);
+          ref.map.addSource('point', {
+          'type': 'geojson',
+          'data': {
+          'type': 'FeatureCollection',
+          'features': [
+          {
+          'type': 'Feature',
+          'geometry': {
+          'type': 'Point',
+          'coordinates': [112, 29]
+          }
+          }
+          ]
+          }
+      });
+      ref.map.addLayer({
+        'id': 'points',
+        'type': 'symbol',
+        'source': 'point',
+        'layout': {
+          'icon-image': 'cat',
+          'icon-size': 0.4
+        }
+      });
+      }
+      );
+    });
+  }
 };
 </script>
 <style scoped>
+#origin-map{
+  height: 500px;
+}
 .black-content {
   background-color: #121212;
 }
+
 </style>
