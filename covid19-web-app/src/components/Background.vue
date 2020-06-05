@@ -107,9 +107,9 @@ export default {
         container: "origin-map",
         style: "mapbox://styles/mapbox/dark-v10?optimize=true", //"mapbox://styles/mapbox/light-v10",
         center: [114.261704,30.618000], // use long, lat of Wuhan Huanan Market
-        minZoom: 4,
+        minZoom: 3,
         maxZoom: 8,
-        zoom: 4,
+        zoom: 3,
         pitch: 45,
         antialias: true
       });
