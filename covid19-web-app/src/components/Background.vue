@@ -31,8 +31,13 @@
         </b-card>
         <!-- Description of Origin Map-->
         <b-card class="black-content">
+          <v-img src="@/assets/img/wuhan_market.jpg"
+            height="200"
+          ></v-img>
+          <br/>
           The first case of COVID-19 in China was reported in Wuhan, Hubei. The origin of this virus is traced to Wuhan
-          Huanan Wholesale Market.
+          Huanan Wholesale Market, which is close to a busy train station.
+          <br/>
           <b>Placeholder for text</b>
         </b-card>
       </b-card-group>
@@ -115,7 +120,7 @@ export default {
     var ref = this;
     ref.map.on('load', function() {
       ref.map.loadImage(
-        require('@/assets/coronavirus.png') ,
+        require('@/assets/img/coronavirus.png') ,
         function(error, image) {
           if (error) throw error;
           ref.map.addImage('cat', image);
@@ -151,7 +156,7 @@ export default {
 </script>
 <style scoped>
 #origin-map{
-  height: 500px;
+  height: 400px;
 }
 .black-content {
   background-color: #121212;
