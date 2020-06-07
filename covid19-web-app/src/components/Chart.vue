@@ -1,6 +1,12 @@
 <template>
   <!-- <div class="flourish-embed flourish-chart" :data-src="race_data" :data-url="race_url">{{race_url}}</div> -->
   <div>
+    <div style="transform: rotate(-90deg) translateX(100px) translateY(-320px)">Cases</div>
+
+    <div
+      class="text-center"
+      style="transform: translateX(-50px);"
+    >No. of days since the 1st day over 1k confirmed cases</div>
     <iframe scrolling="no" frameborder="0" :src="url" style="width: 100%; height: 400.047px;"></iframe>
     <div
       class="flourish-credit"
