@@ -19,8 +19,13 @@
     <v-container>
       <div class="py-5"></div>
       <b-card class="black-content">
-        COVID19 in China is ....
-        <b>Placeholder for Text</b>
+        In this global emergency, China is the first country to report and exprience the ourburst of COVID-19. 
+        Since January 2020, more and more cases were reported in Wuhan and nearby cities. In a short time, this disease has spread
+        all over China, which required immediate actions. After serveral months of the fighting with this disease, in May 2020, 
+        China is recovering from the disease: schools are reopened and flights are rescheduled...
+        <br/><br/>
+        To have a closer look of the dynamic change of COVID-19 in China from January to May, we provide the the following map
+        and chart.
       </b-card>
       <!-- COVID China Map -->
       <b-card-group deck>
@@ -57,8 +62,14 @@
         </b-card>
         <!-- Description of COVID China Map -->
         <b-card class="card-text black-content">
-          Based on this map...
-          <b>Placeholder for text</b>
+          <br/><br/>
+          From January to May of 2020, the cumulative count of confirmed, recovered and dead cases in China are provided.
+          <br/><br/>
+          Based on the dynamic change shown on map, the spread of this disease was very fast in January and February, but became slowly 
+          after March. In April, this growth of disease already achieved plateau and only a few new confirmed cases are observed.
+          <br/><br/>
+          Among those districts, Wuhan suffered the most: over 60% of the confirmed cases are clustered in Wuhan. This can be caused
+          by the blockdown action taken by the government.
         </b-card>
       </b-card-group>
 
@@ -70,8 +81,14 @@
         </b-card>
         <!-- Description of COVID China Chart -->
         <b-card class="card-text black-content">
-          Based on this chart...
-          <b>Placeholder for text</b>
+          <br/><br/>
+          This chart shows detailed growth of confirmed, recovered and dead cases in China.
+          <br/><br/>
+          The most rapid growth is observed during the first 30 days since the first day with over 1000 confirmed cases.
+          This rapid growth is related to the outburst of virus and the poor time. During the first 30 days, it is exactly in the Chinese
+          Spring Festival, the largest annual migration. According to report,<b> <i>'Over 300 million train tickets have been sold for the Spring 
+          Festival travel rush after the presale started on Dec 12, 2019'</i></b>. This busy human migration
+          increased the convinience for virus spreading.
         </b-card>
       </b-card-group>
     </v-container>
@@ -87,8 +104,8 @@ import Chart from "./Chart";
 let $ = JQuery;
 var playSpeed = 200;
 let popup = new mapboxgl.Popup({
-  closeButton: false,
-  closeOnClick: false
+  closeButton: true,
+  closeOnClick: true
 });
 
 export default {

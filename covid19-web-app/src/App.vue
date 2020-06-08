@@ -5,7 +5,7 @@
         <v-img
           class="shrink mr-3"
           contain
-          :src="require('./assets/logo.svg')"
+          :src="require('./assets/img/coronavirus.png')"
           transition="scale-transition"
           width="60"
         />
@@ -13,10 +13,10 @@
         <v-toolbar-title class="font-weight-black headline">COVID-19 in China</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
-      <v-btn @click="$vuetify.goTo('#global')" text>
+      <v-btn @click="$vuetify.goTo('#background')" text>
         <span class="mr-2">Background</span>
       </v-btn>
-      <v-btn @click="$vuetify.goTo('#china')" text>
+      <v-btn @click="$vuetify.goTo('#covid')" text>
         <span class="mr-2">China COVID-19</span>
       </v-btn>
       <v-btn @click="$vuetify.goTo('#sars')" text>
@@ -59,11 +59,11 @@
           </v-row>
         </v-parallax>
       </section>
-      <section id="global">
+      <section id="background">
         <Background />
       </section>
-      <section id="china">
-        <China />
+      <section id="covid">
+        <COVID />
       </section>
       <section id="sars">
         <SARS />
@@ -79,9 +79,8 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld';
 import Background from "./components/Background";
-import China from "./components/China"; // China COVID-19
+import COVID from "./components/COVID"; // China COVID-19
 import SARS from "./components/SARS"; // China SARS
 import Comparison from "./components/Comparison";
 import Imprint from "./components/Imprint"
@@ -90,9 +89,8 @@ export default {
   name: "App",
 
   components: {
-    // HelloWorld,
     Background,
-    China,
+    COVID,
     SARS,
     Comparison,
     Imprint

@@ -20,8 +20,13 @@
     <v-container>
       <div class="py-5"></div>
       <b-card class="black-content">
-        Comparing to SARS in 2003 ....
-        <b>Placeholder for Text</b>
+        The last time for China to experience such a serious pandemic disease is in 2003: 
+        Severe Acute Respiratory Syndrome (SARS). It is firstly reported in the December of 2002 in Guangdong, China 
+        and then spread to nearby cities. Considering the simliarity between COVID-19 and SARS, the dynamic change of
+        SARS is discussed.
+        <br/><br/>
+        To have a closer look of the dynamic change of SARS in China from March to Auguest, we provide the the following map
+        and chart.
       </b-card>
 
       <!-- SARS China Map -->
@@ -61,8 +66,15 @@
 
         <!-- Description of SARS China Map -->
         <b-card class="card-text black-content">
-          Based on this map...
-          <b>Placeholder for text</b>
+          <br/><br/>
+          From March to August of 2003, the cumulative count of confirmed, recovered and dead cases in China are provided.
+          <br/><br/>
+          Based on the growth of confirmed cases, the spread of virus was very quick in April and May but slowed down after
+          June.
+          <br/><br/>
+          Unlike the map of COVID-19 (the district reported firstly is the district with the most cases), Guangdong is the district
+          with the first reported case but in the end, Beijing has around 50% of total cases. As Beijing is among the most busiest cities in
+          world, the heavy transportation and huge human migration gave advantages to virus spreading. 
         </b-card>
       </b-card-group>
       <!-- SARS China Chart -->
@@ -72,8 +84,12 @@
         </b-card>
         <!-- Description of SARS China Chart -->
         <b-card class="card-text black-content">
-          Based on this chart...
-          <b>Placeholder for text</b>
+           <br/><br/>
+          This chart shows detailed growth of confirmed, recovered and dead cases in China.
+          <br/><br/>
+          Similar to the chart of COVID-19, SARS virus spread quickly in the first 30 days and then slowed down. 
+          In the beginning, Guangdong had most cases but the growth rate was not as high as that of Beijing. In the
+          end, Beijing is the district with most confirmed cases.
         </b-card>
       </b-card-group>
     </v-container>
@@ -89,8 +105,8 @@ import Chart from "./Chart";
 let $ = JQuery;
 var playSpeed = 200;
 let popup = new mapboxgl.Popup({
-  closeButton: false,
-  closeOnClick: false
+  closeButton: true,
+  closeOnClick: true
 });
 
 export default {
