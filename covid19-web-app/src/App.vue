@@ -10,7 +10,7 @@
           width="60"
         />
 
-        <v-toolbar-title class="font-weight-black headline">China COVID-19 Dashboard</v-toolbar-title>
+        <v-toolbar-title class="font-weight-black headline">COVID-19 in China</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
       <v-btn @click="$vuetify.goTo('#global')" text>

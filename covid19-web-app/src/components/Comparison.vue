@@ -96,6 +96,7 @@ export default {
               width: 1,
               colors: ['transparent']
             },
+            colors: ["#A8322D", "#FFC300"],
             xaxis: {
               categories: ['Confirmed','Recovered', 'Dead'],
               labels:{
@@ -115,7 +116,10 @@ export default {
               labels:{
                   style:{
                       colors: ['#FFFFFF', '#FFFFFF', '#FFFFFF','#FFFFFF', '#FFFFFF', '#FFFFFF']
-                  }
+                  },
+                  formatter: function(val) {
+                    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                }
               }
        
             },
@@ -130,7 +134,7 @@ export default {
             tooltip: {
               y: {
                 formatter: function (val) {
-                  return val + " people"
+                  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " people";
                 }
               }
             }

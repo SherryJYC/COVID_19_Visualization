@@ -50,7 +50,7 @@
           <!-- legend -->
           <div class="legend-container2">
             <div class="legend2" id="legend2">
-              <h2 class="legend2">Confirmed</h2>
+              <h2 class="legend2" id="legend-title2">Confirmed</h2>
               <hr />
 
               <!-- Div where the dynamic legend is created  -->
@@ -117,12 +117,13 @@ export default {
     ],
     dates: sars_dates,
     breaks: [
-      [10, "#007A96"],
-      [50, "#72791C"],
-      [500, "#485A2C"],
-      [1000, "#956013"],
-      [2000, "#A8322D"]
+      [10, '#ffffb2'],
+      [50, '#fecc5c'],
+      [500, '#fd8d3c'],
+      [1000, '#f03b20'],
+      [2000, '#bd0026']
     ],
+    optionalTitles: ['Confirmed', 'Recovered','Dead'],
     optionalFields: [
       ["sars_confirmed", "SARS_confirmed2_polygon4-6khqbr"],
       ["sars_cured", "SARS_cured2_polygon4-d9om1c"],
@@ -192,15 +193,15 @@ export default {
         ["linear"],
         ["get", chosenDate],
         10,
-        "#007A96",
+        this.breaks[0][1],
         50,
-        "#72791C",
+        this.breaks[1][1],
         500,
-        "#485A2C",
+        this.breaks[2][1],
         1000,
-        "#956013",
+        this.breaks[3][1],
         2000,
-        "#A8322D"
+        this.breaks[4][1],
       ]);
     },
     setField: function(chosenField) {
@@ -224,7 +225,8 @@ export default {
         this.currentDate,
         this.optionalFields[this.currentLayer][0]
       );
-
+      // change title of legend
+      document.getElementById('legend-title2').textContent = this.optionalTitles[this.currentLayer];
       this.chart_id = chosenField;
     },
     autoPlay: function(playSpeed) {

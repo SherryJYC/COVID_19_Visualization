@@ -27,7 +27,7 @@
         <b-card class="card-content black-content">
           <div>
             <b-button :pressed="true" class="btn-tab" @click="setField(0)">Confirmed</b-button>
-            <b-button class="btn-tab" @click="setField(1)">Cured</b-button>
+            <b-button class="btn-tab" @click="setField(1)">Recovered</b-button>
             <b-button class="btn-tab" @click="setField(2)">Dead</b-button>
           </div>
           <div id="china-map" ref="map"></div>
@@ -47,7 +47,7 @@
           <!-- legend -->
           <div class="legend-container">
             <div class="legend" id="legend">
-              <h2 class="legend">Confirmed</h2>
+              <h2 class="legend" id="legend-title">Confirmed</h2>
               <hr />
 
               <!-- Div where the dynamic legend is created  -->
@@ -106,7 +106,6 @@ export default {
     playcolor: "#A8322D",
     token:
       "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNrYWhuNnUyaDBpMW8yeHQ5YmU5bjRxbmYifQ.rTKiRvlmkUa2IfJl9ToD9g",
-    // data_url:'mapbox://sherryjyc.7xgdtkm5',
     all_url: [
       "mapbox://sherryjyc.7aotoxrd",
       "mapbox://sherryjyc.5z7vqhli",
@@ -114,12 +113,13 @@ export default {
     ],
     dates: covid_dates,
     breaks: [
-      [10, "#007A96"],
-      [50, "#72791C"],
-      [200, "#485A2C"],
-      [1000, "#956013"],
-      [10000, "#A8322D"]
+      [10, '#ffffb2'],
+      [50, '#fecc5c'],
+      [200, '#fd8d3c'],
+      [1000, '#f03b20'],
+      [10000, '#bd0026']
     ],
+    optionalTitles: ['Confirmed', 'Recovered','Dead'],
     optionalFields: [
       ["dxy_confirmed", "DXYcity_confirmed_polygon4-a1tfez"],
       ["dxy_cured", "DXYcity_cured_polygon4-7b7exw"],
@@ -188,15 +188,15 @@ export default {
         ["linear"],
         ["get", chosenDate],
         10,
-        "#007A96",
+        this.breaks[0][1],
         50,
-        "#72791C",
+        this.breaks[1][1],
         200,
-        "#485A2C",
+        this.breaks[2][1],
         1000,
-        "#956013",
+        this.breaks[3][1],
         10000,
-        "#A8322D"
+        this.breaks[4][1],
       ]);
     },
     setField: function(chosenField) {
@@ -220,7 +220,8 @@ export default {
         this.currentDate,
         this.optionalFields[this.currentLayer][0]
       );
-
+      // change title of legend
+      document.getElementById('legend-title').textContent = this.optionalTitles[this.currentLayer];
       this.chart_id = chosenField;
     },
     autoPlay: function(playSpeed) {
