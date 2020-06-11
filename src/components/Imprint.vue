@@ -3,7 +3,12 @@
 
     <v-container>
     <b-card-group deck>
-        <b-card class="black-content" text-variant="white"  header="References">
+        <b-card class="black-content" text-variant="white"  header="Sources">
+            <b>References</b><br/>
+            <v-row class="source" >
+            [1] “China's mass transit in high gear as Spring Festival travel rush starts,” 10-Jan-2020.
+            </v-row>
+            <br/>
             <b>Data sources</b><br/>
             <v-row>
             <b-button class="source" variant="dark" href="https://github.com/BlankerL/DXY-COVID-19-Data" >

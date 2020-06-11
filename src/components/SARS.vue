@@ -9,13 +9,13 @@
 
     <v-container>
       <div class="py-5"></div>
-      <b-card class="black-content">
+      <b-card class="black-content title font-weight-regular">
         The last time for China to experience such a serious pandemic disease is in 2003:
         Severe Acute Respiratory Syndrome (SARS). It was firstly reported in the December of 2002 in Guangdong, China
         and then spread to nearby cities. Considering the simliarity between COVID-19 and SARS, the dynamic change of
         SARS is discussed.
         <br />
-        <br />To have a closer look of the dynamic change of SARS in China from March to Auguest, we provide the the following map
+        <br />To check more details of the dynamic change of SARS in China from March to Auguest, we provide the the following map
         and chart.
       </b-card>
 

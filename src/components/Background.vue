@@ -111,7 +111,7 @@ export default {
         style: "mapbox://styles/mapbox/dark-v10?optimize=true", //"mapbox://styles/mapbox/light-v10",
         center: [114.261704, 30.618], // use long, lat of Wuhan Huanan Market
         minZoom: 3,
-        maxZoom: 8,
+        maxZoom: 7,
         zoom: 3,
         pitch: 45,
         antialias: true
