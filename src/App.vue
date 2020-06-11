@@ -49,7 +49,12 @@
                     <br />
 
                     <p class="mx-auto title font-weight-light mb-8">Some dummy text here.</p>
-                    <v-btn class="align-self-end" fab outlined @click="$vuetify.goTo('#global')">
+                    <v-btn
+                      class="align-self-end"
+                      fab
+                      outlined
+                      @click="$vuetify.goTo('#background')"
+                    >
                       <v-icon>mdi-chevron-double-down</v-icon>
                     </v-btn>
                   </v-col>
@@ -83,7 +88,7 @@ import Background from "./components/Background";
 import COVID from "./components/COVID"; // China COVID-19
 import SARS from "./components/SARS"; // China SARS
 import Comparison from "./components/Comparison";
-import Imprint from "./components/Imprint"
+import Imprint from "./components/Imprint";
 
 export default {
   name: "App",
@@ -99,9 +104,9 @@ export default {
   data: () => ({
     //
   }),
-  created () {
-      this.$vuetify.theme.dark = true
-    },
+  created() {
+    this.$vuetify.theme.dark = true;
+  }
 };
 </script>
 

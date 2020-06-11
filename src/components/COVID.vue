@@ -5,26 +5,17 @@
       <h2 class="display-3 font-weight-bold mb-3">COVID-19 Status in China</h2>
     </v-container>
 
-      <v-parallax height="300" :src="require('../assets/img/mask.jpg')">
-      <v-container>
-        <v-row>
-          <v-col class="text-center" v-for="stat in stats" :key="stat.title">
-            <span class="display-2 white--text font-weight-regular">{{stat.title}}</span>
-            <div class="py-3"></div>
-            <span class="display-3 white--text font-weight-bold">{{stat.value}}</span>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-parallax>
+    <base-banner v-bind="covidStats"></base-banner>
+
     <v-container>
       <div class="py-5"></div>
       <b-card class="black-content">
-        In this global emergency, China is the first country to report and exprience the ourburst of COVID-19. 
+        In this global emergency, China is the first country to report and exprience the ourburst of COVID-19.
         Since January 2020, more and more cases were reported in Wuhan and nearby cities. In a short time, this disease has spread
-        all over China, which required immediate actions. After serveral months of the fighting with this disease, in May 2020, 
+        all over China, which required immediate actions. After serveral months of the fighting with this disease, in May 2020,
         China is recovering from the disease: schools are reopened and flights are rescheduled...
-        <br/><br/>
-        To have a closer look of the dynamic change of COVID-19 in China from January to May, we provide the the following map
+        <br />
+        <br />To have a closer look of the dynamic change of COVID-19 in China from January to May, we provide the the following map
         and chart.
       </b-card>
       <!-- COVID China Map -->
@@ -62,13 +53,13 @@
         </b-card>
         <!-- Description of COVID China Map -->
         <b-card class="card-text black-content">
-          <br/><br/>
-          From January to May of 2020, the cumulative count of confirmed, recovered and dead cases in China are provided.
-          <br/><br/>
-          Based on the dynamic change shown on map, the spread of this disease was very fast in January and February, but became slowly 
+          <br />
+          <br />From January to May of 2020, the cumulative count of confirmed, recovered and dead cases in China are provided.
+          <br />
+          <br />Based on the dynamic change shown on map, the spread of this disease was very fast in January and February, but became slowly
           after March. In April, this growth of disease already achieved plateau and only a few new confirmed cases are observed.
-          <br/><br/>
-          Among those districts, Wuhan suffered the most: over 60% of the confirmed cases are clustered in Wuhan. This can be caused
+          <br />
+          <br />Among those districts, Wuhan suffered the most: over 60% of the confirmed cases are clustered in Wuhan. This can be caused
           by the blockdown action taken by the government.
         </b-card>
       </b-card-group>
@@ -81,13 +72,18 @@
         </b-card>
         <!-- Description of COVID China Chart -->
         <b-card class="card-text black-content">
-          <br/><br/>
-          This chart shows detailed growth of confirmed, recovered and dead cases in China.
-          <br/><br/>
-          The most rapid growth is observed during the first 30 days since the first day with over 1000 confirmed cases.
+          <br />
+          <br />This chart shows detailed growth of confirmed, recovered and dead cases in China.
+          <br />
+          <br />The most rapid growth is observed during the first 30 days since the first day with over 1000 confirmed cases.
           This rapid growth is related to the outburst of virus and the poor time. During the first 30 days, it is exactly in the Chinese
-          Spring Festival, the largest annual migration. According to report,<b> <i>'Over 300 million train tickets have been sold for the Spring 
-          Festival travel rush after the presale started on Dec 12, 2019'</i></b>. This busy human migration
+          Spring Festival, the largest annual migration. According to report,
+          <b>
+            <i>
+              'Over 300 million train tickets have been sold for the Spring
+              Festival travel rush after the presale started on Dec 12, 2019'
+            </i>
+          </b>. This busy human migration
           increased the convinience for virus spreading.
         </b-card>
       </b-card-group>
@@ -100,6 +96,7 @@ import mapboxgl from "mapbox-gl";
 import { covid_dates } from "../assets/json/dates";
 import JQuery from "jquery";
 import Chart from "./Chart";
+import BaseBanner from "./Banner";
 
 let $ = JQuery;
 var playSpeed = 200;
@@ -111,14 +108,19 @@ let popup = new mapboxgl.Popup({
 export default {
   name: "China",
   components: {
-    Chart
+    Chart,
+    BaseBanner
   },
   data: () => ({
-    stats: [
-      { title: "Total Confirmed", value: 84402 },
-      { title: "Total Deaths", value: 4643 },
-      { title: "Total Recovered", value: 79077 }
-    ],
+    covidStats: {
+      confirmed: "84,641",
+      recovered: "4,645",
+      dead: "79,883",
+      source: "DXY",
+      link:
+        "https://ncov.dxy.cn/ncovh5/view/pneumonia?from=dxy&source=&link=&share=",
+      lastUpdate: "June 10, 2020, 23:52 GMT+8"
+    },
     isPlaying: false,
     playcolor: "#A8322D",
     token:
@@ -130,13 +132,13 @@ export default {
     ],
     dates: covid_dates,
     breaks: [
-      [10, '#ffffb2'],
-      [50, '#fecc5c'],
-      [200, '#fd8d3c'],
-      [1000, '#f03b20'],
-      [10000, '#bd0026']
+      [10, "#ffffb2"],
+      [50, "#fecc5c"],
+      [200, "#fd8d3c"],
+      [1000, "#f03b20"],
+      [10000, "#bd0026"]
     ],
-    optionalTitles: ['Confirmed', 'Recovered','Dead'],
+    optionalTitles: ["Confirmed", "Recovered", "Dead"],
     optionalFields: [
       ["dxy_confirmed", "DXYcity_confirmed_polygon4-a1tfez"],
       ["dxy_cured", "DXYcity_cured_polygon4-7b7exw"],
@@ -213,7 +215,7 @@ export default {
         1000,
         this.breaks[3][1],
         10000,
-        this.breaks[4][1],
+        this.breaks[4][1]
       ]);
     },
     setField: function(chosenField) {
@@ -238,7 +240,9 @@ export default {
         this.optionalFields[this.currentLayer][0]
       );
       // change title of legend
-      document.getElementById('legend-title').textContent = this.optionalTitles[this.currentLayer];
+      document.getElementById("legend-title").textContent = this.optionalTitles[
+        this.currentLayer
+      ];
       this.chart_id = chosenField;
     },
     autoPlay: function(playSpeed) {

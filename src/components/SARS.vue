@@ -5,27 +5,17 @@
       <h2 class="display-3 font-weight-bold mb-3">SARS Status in China</h2>
     </v-container>
 
-    <v-parallax height="300" :src="require('../assets/img/mask.jpg')">
-      <v-container>
-        <v-row>
-          <v-col class="text-center" v-for="stat in stats" :key="stat.title">
-            <span class="display-2 white--text font-weight-regular">{{stat.title}}</span>
-            <div class="py-3"></div>
-            <span class="display-3 white--text font-weight-bold">{{stat.value}}</span>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-parallax>
+    <base-banner v-bind="sarsStats"></base-banner>
 
     <v-container>
       <div class="py-5"></div>
       <b-card class="black-content">
-        The last time for China to experience such a serious pandemic disease is in 2003: 
-        Severe Acute Respiratory Syndrome (SARS). It is firstly reported in the December of 2002 in Guangdong, China 
-        and then spread to nearby cities. Considering the simliarity between COVID-19 and SARS, the dynamic change of
+        The last time for China to experience such a serious pandemic disease is in 2003:
+        Severe Acute Respiratory Syndrome (SARS). It was firstly reported in the December of 2002 in Guangdong, China
+        and then spreaded to nearby cities. Considering the simliarity between COVID-19 and SARS, the dynamic change of
         SARS is discussed.
-        <br/><br/>
-        To have a closer look of the dynamic change of SARS in China from March to Auguest, we provide the the following map
+        <br />
+        <br />To have a closer look of the dynamic change of SARS in China from March to Auguest, we provide the the following map
         and chart.
       </b-card>
 
@@ -66,15 +56,15 @@
 
         <!-- Description of SARS China Map -->
         <b-card class="card-text black-content">
-          <br/><br/>
-          From March to August of 2003, the cumulative count of confirmed, recovered and dead cases in China are provided.
-          <br/><br/>
-          Based on the growth of confirmed cases, the spread of virus was very quick in April and May but slowed down after
+          <br />
+          <br />From March to August of 2003, the cumulative count of confirmed, recovered and dead cases in China are provided.
+          <br />
+          <br />Based on the growth of confirmed cases, the spread of virus was very quick in April and May but slowed down after
           June.
-          <br/><br/>
-          Unlike the map of COVID-19 (the district reported firstly is the district with the most cases), Guangdong is the district
+          <br />
+          <br />Unlike the map of COVID-19 (the district reported firstly is the district with the most cases), Guangdong is the district
           with the first reported case but in the end, Beijing has around 50% of total cases. As Beijing is among the most busiest cities in
-          world, the heavy transportation and huge human migration gave advantages to virus spreading. 
+          world, the heavy transportation and huge human migration gave advantages to virus spreading.
         </b-card>
       </b-card-group>
       <!-- SARS China Chart -->
@@ -84,10 +74,10 @@
         </b-card>
         <!-- Description of SARS China Chart -->
         <b-card class="card-text black-content">
-           <br/><br/>
-          This chart shows detailed growth of confirmed, recovered and dead cases in China.
-          <br/><br/>
-          Similar to the chart of COVID-19, SARS virus spread quickly in the first 30 days and then slowed down. 
+          <br />
+          <br />This chart shows detailed growth of confirmed, recovered and dead cases in China.
+          <br />
+          <br />Similar to the chart of COVID-19, SARS virus spread quickly in the first 30 days and then slowed down.
           In the beginning, Guangdong had most cases but the growth rate was not as high as that of Beijing. In the
           end, Beijing is the district with most confirmed cases.
         </b-card>
@@ -101,6 +91,7 @@ import mapboxgl from "mapbox-gl";
 import { sars_dates } from "../assets/json/dates";
 import JQuery from "jquery";
 import Chart from "./Chart";
+import BaseBanner from "./Banner";
 
 let $ = JQuery;
 var playSpeed = 200;
@@ -112,15 +103,20 @@ let popup = new mapboxgl.Popup({
 export default {
   name: "SARS",
   components: {
-    Chart
+    Chart,
+    BaseBanner
   },
   data: () => ({
     map: null,
-    stats: [
-      { title: "Total Confirmed", value: 8096 },
-      { title: "Total Deaths", value: 774 },
-      { title: "Total Recovered", value: "?" }
-    ],
+    sarsStats: {
+      confirmed: "5,327",
+      recovered: "4,959",
+      dead: "394",
+      source: "National Health Commission of the People's Republic of China",
+      link:
+        "http://www.nhc.gov.cn/wjw/zcjd/201304/a0d4975881e44d389195779773afaabc.shtml",
+      lastUpdate: "August 16, 2003, 10:00 GMT+8"
+    },
     isPlaying: false,
     playcolor: "#A8322D",
     token:
@@ -133,13 +129,13 @@ export default {
     ],
     dates: sars_dates,
     breaks: [
-      [10, '#ffffb2'],
-      [50, '#fecc5c'],
-      [500, '#fd8d3c'],
-      [1000, '#f03b20'],
-      [2000, '#bd0026']
+      [10, "#ffffb2"],
+      [50, "#fecc5c"],
+      [500, "#fd8d3c"],
+      [1000, "#f03b20"],
+      [2000, "#bd0026"]
     ],
-    optionalTitles: ['Confirmed', 'Recovered','Dead'],
+    optionalTitles: ["Confirmed", "Recovered", "Dead"],
     optionalFields: [
       ["sars_confirmed", "SARS_confirmed2_polygon4-6khqbr"],
       ["sars_cured", "SARS_cured2_polygon4-d9om1c"],
@@ -217,7 +213,7 @@ export default {
         1000,
         this.breaks[3][1],
         2000,
-        this.breaks[4][1],
+        this.breaks[4][1]
       ]);
     },
     setField: function(chosenField) {
@@ -242,7 +238,9 @@ export default {
         this.optionalFields[this.currentLayer][0]
       );
       // change title of legend
-      document.getElementById('legend-title2').textContent = this.optionalTitles[this.currentLayer];
+      document.getElementById(
+        "legend-title2"
+      ).textContent = this.optionalTitles[this.currentLayer];
       this.chart_id = chosenField;
     },
     autoPlay: function(playSpeed) {

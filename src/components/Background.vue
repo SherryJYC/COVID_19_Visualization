@@ -5,40 +5,34 @@
       <h2 class="display-3 font-weight-bold mb-3">Background</h2>
     </v-container>
 
-      <v-parallax height="300" :src="require('../assets/img/mask.jpg')">
-      <v-container>
-        <v-row>
-          <v-col class="text-center" v-for="stat in stats" :key="stat.title">
-            <span class="display-2 white--text font-weight-regular">{{stat.title}}</span>
-            <div class="py-3"></div>
-            <span class="display-3 white--text font-weight-bold">{{stat.value}}</span>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-parallax>
+    <base-banner v-bind="globalStats"></base-banner>
 
     <v-container>
-      <b-card class="black-content">
-        COVID19 is a global disease ....
-        <b>Placeholder for Text</b>
+      <b-card class="black-content title font-weight-regular">
+        In December 2019, multiple “pneumonia of unknown cause” cases were reported to several hospitals in Wuhan, China. By the end of the year, an outbreak of the disease was confirmed and reported to WHO.
+        The disease was later named as Coronavirus disease (COVID-19) by WHO.
+        In March 11, 2020, COVID-19 has been identified as a pandemic.
+        With more than 7 million confirmed cases and over 200 countries affected, COVID-19 is one of the most threatening global health emergencies now.
       </b-card>
 
       <!-- Origin -->
-      <h3 class="display-2 font-weight-bold mb-3">Origin</h3>
+      <h3 class="display-2 font-weight-bold mb-3">The first case reported</h3>
       <b-card-group deck>
         <b-card class="black-content">
           <div id="origin-map"></div>
         </b-card>
         <!-- Description of Origin Map-->
         <b-card class="black-content">
-          <v-img src="@/assets/img/wuhan_market.jpg"
-            height="200"
-          ></v-img>
-          <br/>
-          The first case of COVID-19 in China was reported in Wuhan, Hubei. The origin of this virus is traced to Wuhan
-          Huanan Wholesale Market, which is close to a busy train station.
-          <br/>
-          <b>Placeholder for text</b>
+          <v-img src="@/assets/img/wuhan_market.jpg" height="200"></v-img>
+          <br />The first case of COVID-19 in China was reported in December 1, 2019 in Wuhan, Hubei.
+          Among 41 early confirmed cases, 27 cases have reported previous exposures to
+          <b>
+            Wuhan
+            Huanan Wholesale Market
+          </b>, the biggest seafood wholesale market in central China.
+          <br />
+          <br />The market locates close to Hankou Railway Station, one of the central hubs for railway in Wuhan.
+          The passenger volume of the station reached 5,500,000 during the 40 days of the Spring Festival transport season in 2019.
         </b-card>
       </b-card-group>
 
@@ -59,107 +53,109 @@
       <h3 class="display-2 font-weight-bold mb-3">Current Status</h3>
       <b-card-group deck>
         <b-card class="black-content">
-          Right now, most of countries are recovering from COVID-19...
+          Right now, most of the countries are slowly recovering from COVID-19 and gradually loosening their restriction. As the country, where the first COVID-19 case was reported, China has been through significant chanllenges in combating the disease.
+          Nevertheless, with timely iron fist measures, China is able to control the situation and is now slowing approaching to reopen.
+          By May 2, 2020, all the 31 provinces of China have been release from the highest level response to public health emergencies.
         </b-card>
         <!-- Description of Next Section-->
         <b-card class="black-content">
-          In the next sections, we would like to discuss COVID-19 in China and compare it with SARS...
-          <b>Placeholder for text</b>
+          In the following sections, we take a closer look at the COVID-19 status in China through the time and also review the outbreak of SARS in 2003, another
+          big epidemic in Chinese history to discuss the implication of SARS on COVID-19.
         </b-card>
       </b-card-group>
-
     </v-container>
-    
   </div>
 </template>
 
 <script>
-// import Chart from "./Chart";
 import mapboxgl from "mapbox-gl";
+import BaseBanner from "./Banner";
 
 export default {
   name: "Global",
   components: {
-    // Chart
+    BaseBanner
   },
 
   data: () => ({
-    stats: [
-      { title: "Total Confirmed", value: 3524429 },
-      { title: "Total Deaths", value: 247838 },
-      { title: "Total Recovered", value: 1132553 }
-    ],
+    globalStats: {
+      confirmed: "7,387,808",
+      recovered: "3,640,834",
+      dead: "415,787",
+      source: "worldometer",
+      link: "https://www.worldometers.info/coronavirus/?",
+      lastUpdate: "June 10, 2020, 17:07 GMT"
+    },
     chart: {
       race_data: "visualisation/2647201",
       race_url: "https://flo.uri.sh/visualisation/2647201/embed"
     },
     token:
-      "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNrYWhuNnUyaDBpMW8yeHQ5YmU5bjRxbmYifQ.rTKiRvlmkUa2IfJl9ToD9g",
+      "pk.eyJ1Ijoic2hlcnJ5anljIiwiYSI6ImNrYWhuNnUyaDBpMW8yeHQ5YmU5bjRxbmYifQ.rTKiRvlmkUa2IfJl9ToD9g"
   }),
-  created(){
+  created() {
     this.map = null;
   },
-  methods:{
-     initMap: function() {
+  methods: {
+    initMap: function() {
       mapboxgl.accessToken = this.token;
 
       this.map = new mapboxgl.Map({
         container: "origin-map",
         style: "mapbox://styles/mapbox/dark-v10?optimize=true", //"mapbox://styles/mapbox/light-v10",
-        center: [114.261704,30.618000], // use long, lat of Wuhan Huanan Market
+        center: [114.261704, 30.618], // use long, lat of Wuhan Huanan Market
         minZoom: 3,
         maxZoom: 8,
         zoom: 3,
         pitch: 45,
         antialias: true
       });
-     }
+    }
   },
   mounted() {
     this.initMap();
     var ref = this;
-    ref.map.on('load', function() {
-      ref.map.loadImage(
-        require('@/assets/img/coronavirus.png') ,
-        function(error, image) {
-          if (error) throw error;
-          ref.map.addImage('cat', image);
-          ref.map.addSource('point', {
-          'type': 'geojson',
-          'data': {
-          'type': 'FeatureCollection',
-          'features': [
-          {
-          'type': 'Feature',
-          'geometry': {
-          'type': 'Point',
-          'coordinates': [112, 29]
+    ref.map.on("load", function() {
+      ref.map.loadImage(require("@/assets/img/coronavirus.png"), function(
+        error,
+        image
+      ) {
+        if (error) throw error;
+        ref.map.addImage("cat", image);
+        ref.map.addSource("point", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [112, 29]
+                }
+              }
+            ]
           }
+        });
+        ref.map.addLayer({
+          id: "points",
+          type: "symbol",
+          source: "point",
+          layout: {
+            "icon-image": "cat",
+            "icon-size": 0.4
           }
-          ]
-          }
+        });
       });
-      ref.map.addLayer({
-        'id': 'points',
-        'type': 'symbol',
-        'source': 'point',
-        'layout': {
-          'icon-image': 'cat',
-          'icon-size': 0.4
-        }
-      });
-      }
-      );
     });
   }
 };
 </script>
 <style scoped>
-#origin-map{
+#origin-map {
   height: 400px;
 }
 .black-content {
   background-color: #121212;
 }
-
 </style>
