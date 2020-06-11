@@ -15,7 +15,7 @@
         and then spreaded to nearby cities. Considering the simliarity between COVID-19 and SARS, the dynamic change of
         SARS is discussed.
         <br />
-        <br />To have a closer look of the dynamic change of SARS in China from March to Auguest, we provide the the following map
+        <br />To check more details of the dynamic change of SARS in China from March to Auguest, we provide the the following map
         and chart.
       </b-card>
 
