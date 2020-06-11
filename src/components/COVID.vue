@@ -9,7 +9,7 @@
 
     <v-container>
       <div class="py-5"></div>
-      <b-card class="black-content">
+      <b-card class="black-content title font-weight-regular">
         In this global emergency, China is the first country to report and exprience the ourburst of COVID-19.
         Since January 2020, more and more cases were reported in Wuhan and nearby cities. In a short time, this disease has spread
         all over China, which required immediate actions. After serveral months of the fighting with this disease, in May 2020,
