@@ -53,16 +53,22 @@
       <h3 class="display-2 font-weight-bold mb-3">Current Status</h3>
       <b-card-group deck>
         <b-card class="black-content">
-          Right now, most of the countries are slowly recovering from COVID-19 and gradually loosening their restriction. As the country, where the first COVID-19 case was reported, China has been through significant chanllenges in combating the disease.
-          Nevertheless, with timely iron fist measures, China is able to control the situation and is now slowing approaching to reopen.
-          By May 2, 2020, all the 31 provinces of China have been release from the highest level response to public health emergencies.
+          <figure class="figure">
+            <img src="../assets/img/reopen.png" class="figure-img img-fluid rounded" alt="..." />
+            <figcaption class="figure-caption">Credits: Getty Images</figcaption>
+          </figure>
         </b-card>
-        <!-- Description of Next Section-->
         <b-card class="black-content">
-          In the following sections, we take a closer look at the COVID-19 status in China through the time and also review the outbreak of SARS in 2003, another
-          big epidemic in Chinese history to discuss the implication of SARS on COVID-19.
+          Right now, most of the countries are slowly recovering from COVID-19 and gradually loosening their restrictions. As the country where the first COVID-19 case was reported, China has been through significant challenges in combating the disease.
+          Nevertheless, with timely iron fist measures, China is able to control the situation and is now slowly approaching to reopen.
+          By May 2, 2020, all the 31 provinces of China have been released from the highest level response to public health emergencies.
         </b-card>
       </b-card-group>
+      <!-- Description of Next Section-->
+      <b-card class="black-content title font-weight-regular">
+        In the following sections, we will walk you through the COVID-19 status in China throughout the time and also review the outbreak of SARS in 2003, another
+        big epidemic in Chinese history to discuss the implication of SARS on COVID-19.
+      </b-card>
     </v-container>
   </div>
 </template>

@@ -18,9 +18,12 @@
           <span class="display-3 green--text font-weight-bold">{{recovered}}</span>
         </v-col>
       </v-row>
-      <span class="grey--text">
+      <span class="white--text font-weight-bold">
         Statistics from
-        <a href="link">{{source}}</a>
+        <a
+          href="link"
+          class="light-blue--text text--lighten-3 font-weight-bold"
+        >{{source}}</a>
         . Last updated: {{lastUpdate}}
       </span>
     </v-container>

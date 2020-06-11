@@ -10,7 +10,7 @@
     <v-container>
       <div class="py-5"></div>
       <b-card class="black-content">
-        In this global emergency, China is the first country to report and exprience the ourburst of COVID-19.
+        In this global emergency, China is the first country to report and experience the ourburst of COVID-19.
         Since January 2020, more and more cases were reported in Wuhan and nearby cities. In a short time, this disease has spread
         all over China, which required immediate actions. After serveral months of the fighting with this disease, in May 2020,
         China is recovering from the disease: schools are reopened and flights are rescheduled...
@@ -60,7 +60,7 @@
           after March. In April, this growth of disease already achieved plateau and only a few new confirmed cases are observed.
           <br />
           <br />Among those districts, Wuhan suffered the most: over 60% of the confirmed cases are clustered in Wuhan. This can be caused
-          by the blockdown action taken by the government.
+          by the lockdown action taken by the government.
         </b-card>
       </b-card-group>
 
@@ -73,10 +73,10 @@
         <!-- Description of COVID China Chart -->
         <b-card class="card-text black-content">
           <br />
-          <br />This chart shows detailed growth of confirmed, recovered and dead cases in China.
+          <br />This chart shows the detailed growth of confirmed, recovered and dead cases in China.
           <br />
           <br />The most rapid growth is observed during the first 30 days since the first day with over 1000 confirmed cases.
-          This rapid growth is related to the outburst of virus and the poor time. During the first 30 days, it is exactly in the Chinese
+          This rapid growth is related to the outburst of virus and the poor timing -- exactly in the Chinese
           Spring Festival, the largest annual migration. According to report,
           <b>
             <i>

@@ -12,7 +12,7 @@
       <b-card class="black-content">
         The last time for China to experience such a serious pandemic disease is in 2003:
         Severe Acute Respiratory Syndrome (SARS). It was firstly reported in the December of 2002 in Guangdong, China
-        and then spreaded to nearby cities. Considering the simliarity between COVID-19 and SARS, the dynamic change of
+        and then spread to nearby cities. Considering the simliarity between COVID-19 and SARS, the dynamic change of
         SARS is discussed.
         <br />
         <br />To have a closer look of the dynamic change of SARS in China from March to Auguest, we provide the the following map
@@ -79,7 +79,7 @@
           <br />
           <br />Similar to the chart of COVID-19, SARS virus spread quickly in the first 30 days and then slowed down.
           In the beginning, Guangdong had most cases but the growth rate was not as high as that of Beijing. In the
-          end, Beijing is the district with most confirmed cases.
+          end, Beijing is the region with most confirmed cases.
         </b-card>
       </b-card-group>
     </v-container>
