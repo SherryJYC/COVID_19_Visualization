@@ -33,18 +33,17 @@
             <v-col class="align-middle">
               COVID-19 in China
               <h3>
-                <b-badge variant="danger">5.50%</b-badge>
+                <b-badge variant="danger">5.5%</b-badge>
               </h3>
             </v-col>
             <v-col class="align-middle">
               SARS in China
               <h3>
-                <b-badge variant="danger">9.56%</b-badge>
+                <b-badge variant="danger">7.4%</b-badge>
               </h3>
             </v-col>
           </v-row>From the cumulative count for confirmed, recovered, and dead casese in China, the number of COVID-19 cases is significantly higher than that of SARS, around 10 times the SARS cases.
-          Based on the existing numbers, the case fatality ratio of the two diseases are estimated. Although more people infected by COVID-19, the death rate is lower that SARS, accounting for half of SARS.
-          <b>Placeholder for text</b>
+          Based on the existing numbers, the case fatality ratio of the two diseases are estimated. Although more people infected by COVID-19, the death rate is lower that SARS.
         </b-card>
       </b-card-group>
 
@@ -86,11 +85,11 @@ export default {
     series: [
       {
         name: "COVID-19",
-        data: [84402, 79077, 4643]
+        data: [84641, 79883, 4645]
       },
       {
         name: "SARS",
-        data: [8096, 7000, 774]
+        data: [5327, 4959, 394]
       }
     ],
     chartOptions: {
