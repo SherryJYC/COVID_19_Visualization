@@ -33,35 +33,39 @@
           :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
           :src="require('./assets/img/corona-black.jpg')"
         >
-          <v-row no-gutters align="center">
-            <v-theme-provider dark>
-              <v-container fill-height>
-                <v-row align="center" class="white--text" justify="end">
-                  <v-col class="white--text text-center" cols="8" tag="h1">
-                    <span
-                      :class="[
+          <v-overlay absolute opacity="0.4">
+            <v-row no-gutters align="center">
+              <v-theme-provider dark>
+                <v-container fill-height>
+                  <v-row align="center" class="white--text" justify="end">
+                    <v-col class="white--text text-center" cols="8" tag="h1">
+                      <span
+                        :class="[
                         $vuetify.breakpoint.smAndDown
                           ? 'display-3'
                           : 'display-4'
                       ]"
-                      class="font-weight-black"
-                    >COVID-19</span>
-                    <br />
+                        class="font-weight-black"
+                      >COVID-19 in China</span>
+                      <br />
 
-                    <p class="mx-auto title font-weight-light mb-8">Some dummy text here.</p>
-                    <v-btn
-                      class="align-self-end"
-                      fab
-                      outlined
-                      @click="$vuetify.goTo('#background')"
-                    >
-                      <v-icon>mdi-chevron-double-down</v-icon>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-theme-provider>
-          </v-row>
+                      <p
+                        class="mx-auto title font-weight-light mb-8"
+                      >COVID-19 is a newly disease caused by the novel coronavirus. By far, the outbreak of COVID-19 has spread all over the world</p>
+                      <v-btn
+                        class="align-self-end"
+                        fab
+                        outlined
+                        @click="$vuetify.goTo('#background')"
+                      >
+                        <v-icon>mdi-chevron-double-down</v-icon>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-theme-provider>
+            </v-row>
+          </v-overlay>
         </v-parallax>
       </section>
       <section id="background">

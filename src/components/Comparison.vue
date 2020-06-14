@@ -49,28 +49,99 @@
       </b-card-group>
 
       <!-- Discussion -->
-      <b-card-group deck>
-        <b-card class="black-content">
-          <h3 class="display-2 font-weight-bold mb-3">Diseases</h3>Characteristics of COVID-19:
-          <br />- Most cases will experience mild to moderate respiratory illness and recover without requiring special treatment.
-          <br />- Mean incubation time of 4-6 days.
-          <br />Characteristics of SARS:
-          <br />- Most cases first presented with severe headache, dizziness and myalgia.
-          <br />- Mean incubation time of 6 days with the minimum of 1 day and the maximum of 14 days.
-          <br />commons:
-          <br />- for some cases, rapid deterioration with low oxygen saturation and acute respiratory distress requiring vantilatory support.
-          <br />- initial cases reported in December
-          <br />- initially started from animal-to-human transmission. The latest study shows, the origin of SARS comes from bats, while the zoonotic source of SARS-CoV-2 is unknown.
-        </b-card>
-        <b-card class="black-content">
-          <h3 class="display-2 font-weight-bold mb-3">Government Actions</h3>Difference in government actions:
-          <br />- The early lockdown of Wuhan during COVID-19 spread has been proved to be a wise decision. The timely iron fist measure has saved lifes, indicated by the low proportion of confirmed cases in other provinces.
-          <br />- Two shelter hospitals were built for emergency response with vantilatory supports.
-          <br />Commons:
-          <br />- Close down of animal markets: starting from 2003, all live animal markets in Beijing are perminently banned; Huanan Seafood Market was closed on January 3, 2020.
-          <br />- Shelter hospitals were built: in April 2003, Beijing Xiaotangshan Hospital was reformed in reponse to severe cases of SARS; Huoshenshan Hospital and Heishenshan Hospital were constructed in Feburary 2020.
-        </b-card>
-      </b-card-group>
+      <!-- <b-card-group deck> -->
+      <b-card class="black-content">
+        <h3 class="display-2 font-weight-bold mb-3">Diseases</h3>
+        <table class="table">
+          <thead>
+            <tr class="bg-dark text-white">
+              <th scope="col"></th>
+              <th scope="col">SARS</th>
+              <th scope="col">COVID-19</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-warning">
+              <th scope="row">Initial reported time</th>
+              <td>Early December, 2002</td>
+              <td>December 1, 2019</td>
+            </tr>
+            <tr class="table-warning">
+              <th scope="row">Average incubation time</th>
+              <td>4-6 days</td>
+              <td>4-6 days</td>
+            </tr>
+            <tr class="table-warning">
+              <th scope="row">Special treatement</th>
+              <td>Supplemental oxygen or a ventilator</td>
+              <td>Mostly recover without requiring special treatment. Some cases with rapid deterioration requires vantilatory support</td>
+            </tr>
+            <tr class="table-secondary">
+              <th scope="row text--black">Initial reported place</th>
+              <td>Guangdong</td>
+              <td>Wuhan Huanan Wholesale Market, Hubei</td>
+            </tr>
+            <tr class="table-secondary">
+              <th scope="row">Most common symptoms</th>
+              <td>Severe headache, dizziness and myalgia</td>
+              <td>Fever, dry cough, tiredness</td>
+            </tr>
+
+            <tr class="table-secondary">
+              <th scope="row">Areas</th>
+              <td>32 countries, areas or territories with cases. Most in South-East Asia</td>
+              <td>216 countries, areas or territories with cases. Most in America and Europe</td>
+            </tr>
+            <tr class="table-secondary">
+              <th scope="row">Zoonotic source</th>
+              <td>Bats</td>
+              <td>Unknown</td>
+            </tr>
+            <tr class="table-secondary">
+              <th scope="row">Vaccine</th>
+              <td></td>
+              <td>In testing</td>
+            </tr>
+          </tbody>
+        </table>Note: information summarized based on [2,3]
+      </b-card>
+      <b-card class="black-content">
+        <h3 class="display-2 font-weight-bold mb-3">Government Actions</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg-dark text-white">
+              <th scope="col"></th>
+              <th scope="col">SARS</th>
+              <th scope="col">COVID-19</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-warning">
+              <th scope="row">Closedown of market</th>
+              <td>All live markets are banned in Beijing</td>
+              <td>January 3, 2020 - Hunan Wholesale market</td>
+            </tr>
+            <tr class="table-warning">
+              <th scope="row">Shelter hospital</th>
+              <td>April, 2003 - Beijing Xiaotangshan Hospital</td>
+              <td>Feburary, 2020 - Huoshenshan Hospital, Heishenshan Hospital</td>
+            </tr>
+            <tr class="table-secondary">
+              <th scope="row">Lockdown</th>
+              <td>No official lockdown</td>
+              <td>January 7, 2020 - Lockdown of Wuhan</td>
+            </tr>
+            <tr class="table-secondary">
+              <th scope="row text--black">Travel restrictions</th>
+              <td>Travel restrictions to Beijing later in time</td>
+              <td>Travel pass indicating health status</td>
+            </tr>
+          </tbody>
+        </table>
+      </b-card>
+      <b-card
+        class="black-content title font-weight-regular"
+      >The early lockdown of Wuhan during COVID-19 spread has been proved to be a wise decision. The timely iron fist measure has saved lifes, indicated by the low proportion of confirmed cases in other provinces. In Wuhan, two shelter hospitals were built for emergency response with vantilatory supports. This is a learnt experience from Beijing Xiaotangshan Hospital back in 2003. The planning and construction of Huoshenshan and Leishenshan Hosipital were based on archive of Beijing Xiaotangshan Hospital.</b-card>
     </v-container>
   </div>
 </template>
