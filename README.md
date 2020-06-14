@@ -9,9 +9,12 @@ with SARS.
 * Main packages: Vue.js, Mapbox, Apex, Bootstrap
 
 ## Demo
-* []()
+* [Link to Demo]()
 > Notice:in progrss
-* Screenshot (in progress)
+* Screenshots of Demo <br/>
+![Race Chart](https://github.com/SherryJYC/COVID_19_Visualization/blob/master/src/assets/img/race.png) <br/>
+![Map](https://github.com/SherryJYC/COVID_19_Visualization/blob/master/src/assets/img/map.png) <br/>
+![Chart](https://github.com/SherryJYC/COVID_19_Visualization/blob/master/src/assets/img/chart.png)
 
 
 ## Project setup
