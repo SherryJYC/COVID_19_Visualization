@@ -96,7 +96,7 @@
             <tr class="table-secondary">
               <th scope="row">Areas</th>
               <td>32 countries, areas or territories with cases. Most in South-East Asia</td>
-              <td>216 countries, areas or territories with cases. Most in America and Europe</td>
+              <td>216 countries, areas or territories with cases. Most in America</td>
             </tr>
             <tr class="table-secondary">
               <th scope="row">Zoonotic source</th>
@@ -109,7 +109,7 @@
               <td>In testing</td>
             </tr>
           </tbody>
-        </table>Note: information summarized based on [2,3]
+        </table>Note: information summarized based on [2,3,4]
       </b-card>
       <b-card class="black-content">
         <h3 class="display-2 font-weight-bold mb-3">Government Actions</h3>
@@ -124,7 +124,7 @@
           <tbody>
             <tr class="table-warning">
               <th scope="row">Closedown of market</th>
-              <td>All live markets are banned in Beijing</td>
+              <td>Early 2004 - All live markets are permanently banned in Beijing</td>
               <td>January 3, 2020 - Hunan Wholesale market</td>
             </tr>
             <tr class="table-warning">
@@ -143,7 +143,7 @@
               <td>Travel pass indicating health status</td>
             </tr>
           </tbody>
-        </table>
+        </table>Note: information summarized based on [3,5]
       </b-card>
       <b-card
         class="black-content title font-weight-regular"

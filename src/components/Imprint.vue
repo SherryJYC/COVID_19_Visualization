@@ -11,7 +11,10 @@
         <v-row
           class="source"
         >[2] "Consensus document on the epidemiology of severe acute respiratory syndrome (SARS)", 16-May-2003</v-row>
-        <v-row class="source">[3] "Coronavirus", 14-June-2020</v-row>
+        <v-row class="source">[3] "Coronavirus timeline", 10-June-2020</v-row>
+        <v-row class="source">[4] "Coronavirus", 14-June-2020</v-row>
+        <v-row class="source">[5] "Beijing permanently ban all live poultry market", 26-Jan-2014</v-row>
+
         <br />
 
         <b>Data sources</b>

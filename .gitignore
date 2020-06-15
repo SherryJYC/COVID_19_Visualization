@@ -3,3 +3,6 @@ dist
 Raw
 Processd_Data
 covid19-web-app
+.firebase
+.firebaserc
+firebase.json
