@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app height="80">
+    <v-app-bar app elevate-on-scroll height="80">
       <div class="d-flex align-center">
         <v-img
           class="shrink mr-3"
@@ -24,17 +24,17 @@
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer dark v-model="drawer" fixed temporary>
       <v-list nav dense>
         <v-list-item-group v-model="group">
-          <v-list-item v-for="(item,i) in items" :key="i" @click="$vuetify.goTo(`${item.id}`)">
+          <v-list-item v-for="item in items" :key="item.id" @click="$vuetify.goTo(`${item.id}`)">
             <v-list-item-title>{{item.title}}</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
 
-    <v-content fluid>
+    <v-content>
       <!-- <v-theme-provider dark> -->
       <section id="landing">
         <v-parallax
