@@ -2,7 +2,10 @@
   <div>
     <v-container>
       <div class="py-12"></div>
-      <h2 class="display-3 font-weight-bold mb-3">SARS Status in China</h2>
+      <h2
+        :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
+        class="font-weight-bold mb-3"
+      >SARS Status in China</h2>
     </v-container>
 
     <base-banner v-bind="sarsStats"></base-banner>
@@ -20,68 +23,74 @@
       </b-card>
 
       <!-- SARS China Map -->
-      <b-card-group deck>
-        <b-card class="card-content black-content">
-          <div>
-            <b-button :pressed="true" class="btn-tab2" @click="setField(0)">Confirmed</b-button>
-            <b-button class="btn-tab2" @click="setField(1)">Recovered</b-button>
-            <b-button class="btn-tab2" @click="setField(2)">Dead</b-button>
-          </div>
-
-          <div id="sars-map" ref="map"></div>
-
-          <!-- Timeline -->
-          <div class="time-container2">
-            <div class="time2">
-              <v-btn :color="playcolor" dark depressed fab class="play2" @click="toggle">
-                <v-icon large>{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
-              </v-btn>
-
-              <input type="text" id="date2" readonly />
-              <input class="slider2" type="range" min="1" max="92" step="1" value="1" />
+      <v-row align="center">
+        <v-col cols="12" lg="7">
+          <b-card class="card-content black-content">
+            <div>
+              <b-button :pressed="true" class="btn-tab2" @click="setField(0)">Confirmed</b-button>
+              <b-button class="btn-tab2" @click="setField(1)">Recovered</b-button>
+              <b-button class="btn-tab2" @click="setField(2)">Dead</b-button>
             </div>
-          </div>
 
-          <!-- legend -->
-          <div class="legend-container2">
-            <div class="legend2" id="legend2">
-              <h2 class="legend2" id="legend-title2">Confirmed</h2>
-              <hr />
+            <div id="sars-map" ref="map"></div>
 
-              <!-- Div where the dynamic legend is created  -->
-              <div class="legend2" id="cd-legend2"></div>
+            <!-- Timeline -->
+            <div class="time-container2">
+              <div class="time2">
+                <v-btn :color="playcolor" dark depressed fab class="play2" @click="toggle">
+                  <v-icon large>{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
+                </v-btn>
+
+                <input type="text" id="date2" readonly />
+                <input class="slider2" type="range" min="1" max="92" step="1" value="1" />
+              </div>
             </div>
-          </div>
-        </b-card>
 
-        <!-- Description of SARS China Map -->
-        <b-card class="card-text black-content">
-          <br />
-          <br />From March to August of 2003, the cumulative count of confirmed, recovered and dead cases in China are provided.
-          <br />
-          <br />Based on the growth of confirmed cases, the spread of virus was very quick in April and May but slowed down after
-          June.
-          <br />
-          <br />Unlike the map of COVID-19 (the district reported firstly is the district with the most cases), Guangdong is the district
-          with the first reported case but in the end, Beijing has around 50% of total cases. As Beijing is among the most busiest cities in
-          world, the heavy transportation and huge human migration gave advantages to virus spreading.
-        </b-card>
-      </b-card-group>
-      <!-- SARS China Chart -->
-      <b-card-group deck>
-        <b-card class="card-content black-content">
-          <Chart v-bind="chart_data" />
-        </b-card>
-        <!-- Description of SARS China Chart -->
-        <b-card class="card-text black-content">
-          <br />
-          <br />This chart shows detailed growth of confirmed, recovered and dead cases in China.
-          <br />
-          <br />Similar to the chart of COVID-19, SARS virus spread quickly in the first 30 days and then slowed down.
-          In the beginning, Guangdong had most cases but the growth rate was not as high as that of Beijing. In the
-          end, Beijing is the region with most confirmed cases.
-        </b-card>
-      </b-card-group>
+            <!-- legend -->
+            <div class="legend-container2">
+              <div class="legend2" id="legend2">
+                <h2 class="legend2" id="legend-title2">Confirmed</h2>
+                <hr />
+
+                <!-- Div where the dynamic legend is created  -->
+                <div class="legend2" id="cd-legend2"></div>
+              </div>
+            </div>
+          </b-card>
+        </v-col>
+        <v-col cols="12" lg="5">
+          <!-- Description of SARS China Map -->
+          <b-card class="black-content">
+            From March to August of 2003, the cumulative count of confirmed, recovered and dead cases in China are provided.
+            <br />
+            <br />Based on the growth of confirmed cases, the spread of virus was very quick in April and May but slowed down after
+            June.
+            <br />
+            <br />Unlike the map of COVID-19 (the district reported firstly is the district with the most cases), Guangdong is the district
+            with the first reported case but in the end, Beijing has around 50% of total cases. As Beijing is among the most busiest cities in
+            world, the heavy transportation and huge human migration gave advantages to virus spreading.
+          </b-card>
+        </v-col>
+      </v-row>
+
+      <v-row align="center">
+        <!-- SARS China Chart -->
+        <v-col cols="12" lg="7">
+          <b-card class="card-content black-content">
+            <Chart v-bind="chart_data" />
+          </b-card>
+        </v-col>
+        <v-col cols="12" lg="5">
+          <!-- Description of SARS China Chart -->
+          <b-card class="black-content">
+            This chart shows detailed growth of confirmed, recovered and dead cases in China.
+            <br />
+            <br />Similar to the chart of COVID-19, SARS virus spread quickly in the first 30 days and then slowed down.
+            In the beginning, Guangdong had most cases but the growth rate was not as high as that of Beijing. In the
+            end, Beijing is the region with most confirmed cases.
+          </b-card>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>

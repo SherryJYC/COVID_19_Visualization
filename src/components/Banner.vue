@@ -1,21 +1,41 @@
 <template>
-  <v-parallax height="300" :src="require('../assets/img/mask.jpg')">
-    <v-container>
+  <v-parallax :src="require('../assets/img/mask.jpg')" style="height:100%">
+    <!-- :height="[$vuetify.breakpoint.smAndDown ? '500': '300']" -->
+
+    <v-container style="margin-top:50px; margin-bottom:50px">
       <v-row>
-        <v-col class="text-center">
-          <span class="display-2 red--text font-weight-regular">Total Confirmed</span>
+        <v-col class="text-center" cols="12" lg="4" md="4">
+          <span
+            class="display-2 red--text font-weight-regular"
+            :class="[$vuetify.breakpoint.smAndDown ? 'display-1': 'display-2']"
+          >Confirmed</span>
           <div class="py-3"></div>
-          <span class="display-3 red--text font-weight-bold">{{confirmed}}</span>
+          <span
+            class="display-3 red--text font-weight-bold"
+            :class="[$vuetify.breakpoint.smAndDown ? 'display-2': 'display-3']"
+          >{{confirmed}}</span>
         </v-col>
-        <v-col class="text-center">
-          <span class="display-2 white--text font-weight-regular">Total Dead</span>
+        <v-col class="text-center" cols="12" lg="4" md="4">
+          <span
+            class="display-2 white--text font-weight-regular"
+            :class="[$vuetify.breakpoint.smAndDown ? 'display-1': 'display-2']"
+          >Dead</span>
           <div class="py-3"></div>
-          <span class="display-3 white--text font-weight-bold">{{dead}}</span>
+          <span
+            class="display-3 white--text font-weight-bold"
+            :class="[$vuetify.breakpoint.smAndDown ? 'display-2': 'display-3']"
+          >{{dead}}</span>
         </v-col>
-        <v-col class="text-center">
-          <span class="display-2 green--text font-weight-regular">Total Recovered</span>
+        <v-col class="text-center" cols="12" lg="4" md="4">
+          <span
+            class="display-2 green--text font-weight-regular"
+            :class="[$vuetify.breakpoint.smAndDown ? 'display-1': 'display-2']"
+          >Recovered</span>
           <div class="py-3"></div>
-          <span class="display-3 green--text font-weight-bold">{{recovered}}</span>
+          <span
+            class="display-3 green--text font-weight-bold"
+            :class="[$vuetify.breakpoint.smAndDown ? 'display-2': 'display-3']"
+          >{{recovered}}</span>
         </v-col>
       </v-row>
       <span class="white--text font-weight-bold">

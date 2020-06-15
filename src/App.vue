@@ -13,56 +13,71 @@
         <v-toolbar-title class="font-weight-black headline">COVID-19 in China</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
-      <v-btn @click="$vuetify.goTo('#background')" text>
-        <span class="mr-2">Background</span>
-      </v-btn>
-      <v-btn @click="$vuetify.goTo('#covid')" text>
-        <span class="mr-2">China COVID-19</span>
-      </v-btn>
-      <v-btn @click="$vuetify.goTo('#sars')" text>
-        <span class="mr-2">China SARS</span>
-      </v-btn>
-      <v-btn @click="$vuetify.goTo('#compare')" text>
-        <span class="mr-2">Comparison</span>
-      </v-btn>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"></v-app-bar-nav-icon>
+
+      <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer" ></v-toolbar-side-icon> -->
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn v-for="(item,i) in items" :key="i" @click="$vuetify.goTo(`${item.id}`)" text>
+          <span class="mr-2">{{item.title}}</span>
+        </v-btn>
+      </v-toolbar-items>
     </v-app-bar>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list nav dense>
+        <v-list-item-group v-model="group">
+          <v-list-item v-for="(item,i) in items" :key="i" @click="$vuetify.goTo(`${item.id}`)">
+            <v-list-item-title>{{item.title}}</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-content>
       <section id="landing">
         <v-parallax
-          height="700"
+          :height="$vuetify.breakpoint.smAndDown ? '500': '700'"
           :min-height="'calc(100vh - ' + $vuetify.application.top + 'px)'"
           :src="require('./assets/img/corona-black.jpg')"
         >
           <v-overlay absolute opacity="0.4">
             <v-row no-gutters align="center">
               <v-theme-provider dark>
-                <v-container fill-height>
-                  <v-row align="center" class="white--text" justify="end">
-                    <v-col class="white--text text-center" cols="8" tag="h1">
-                      <span
-                        :class="[
+                <!-- <v-container fill-height> -->
+                <v-row
+                  no-gutters
+                  align="center"
+                  class="white--text"
+                  :justify="$vuetify.breakpoint.mdAndDown ? 'center': 'end'"
+                >
+                  <v-col class="white--text text-center" cols="8" tag="h1">
+                    <span
+                      :class="[
                         $vuetify.breakpoint.smAndDown
-                          ? 'display-3'
+                          ? 'display-2'
                           : 'display-4'
                       ]"
-                        class="font-weight-black"
-                      >COVID-19 in China</span>
-                      <br />
+                      class="font-weight-black"
+                    >COVID-19 in China</span>
+                    <br />
 
-                      <p
-                        class="mx-auto title font-weight-light mb-8"
-                      >COVID-19 is a newly disease caused by the novel coronavirus. By far, the outbreak of COVID-19 has spread all over the world</p>
-                      <v-btn
-                        class="align-self-end"
-                        fab
-                        outlined
-                        @click="$vuetify.goTo('#background')"
-                      >
-                        <v-icon>mdi-chevron-double-down</v-icon>
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                </v-container>
+                    <p
+                      :class="[
+                        $vuetify.breakpoint.smAndDown
+                          ? 'subtitle-1'
+                          : 'title'
+                      ]"
+                      class="mx-auto title font-weight-light mb-8"
+                    >COVID-19 is a newly disease caused by the novel coronavirus. By far, the outbreak of COVID-19 has spread all over the world</p>
+                    <v-btn
+                      class="align-self-end"
+                      fab
+                      outlined
+                      @click="$vuetify.goTo('#background')"
+                    >
+                      <v-icon>mdi-chevron-double-down</v-icon>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+                <!-- </v-container> -->
               </v-theme-provider>
             </v-row>
           </v-overlay>
@@ -106,8 +121,29 @@ export default {
   },
 
   data: () => ({
-    //
+    drawer: false,
+    group: null,
+    items: [
+      {
+        title: "Background",
+        id: "#background"
+      },
+      { title: "China COVID-19", id: "#covid" },
+      {
+        title: "China SARS",
+        id: "#sars"
+      },
+      {
+        title: "Comparison",
+        id: "#compare"
+      }
+    ]
   }),
+  watch: {
+    group() {
+      this.drawer = false;
+    }
+  },
   created() {
     this.$vuetify.theme.dark = true;
   }

@@ -2,7 +2,10 @@
   <div>
     <v-container>
       <div class="py-12"></div>
-      <h2 class="display-3 font-weight-bold mb-3">COVID-19 Status in China</h2>
+      <h2
+        :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
+        class="font-weight-bold mb-3"
+      >COVID-19 Status in China</h2>
     </v-container>
 
     <base-banner v-bind="covidStats"></base-banner>
@@ -19,74 +22,80 @@
         and chart.
       </b-card>
       <!-- COVID China Map -->
-      <b-card-group deck>
-        <b-card class="card-content black-content">
-          <div>
-            <b-button :pressed="true" class="btn-tab" @click="setField(0)">Confirmed</b-button>
-            <b-button class="btn-tab" @click="setField(1)">Recovered</b-button>
-            <b-button class="btn-tab" @click="setField(2)">Dead</b-button>
-          </div>
-          <div id="china-map" ref="map"></div>
-
-          <!-- Timeline -->
-          <div class="time-container">
-            <div class="time">
-              <v-btn :color="playcolor" dark depressed fab class="play" @click="toggle">
-                <v-icon large>{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
-              </v-btn>
-
-              <input type="text" id="date" readonly />
-              <input class="slider" type="range" min="1" max="95" step="1" value="1" />
+      <v-row align="center">
+        <v-col cols="12" lg="7">
+          <b-card class="card-content black-content">
+            <div>
+              <b-button :pressed="true" class="btn-tab" @click="setField(0)">Confirmed</b-button>
+              <b-button class="btn-tab" @click="setField(1)">Recovered</b-button>
+              <b-button class="btn-tab" @click="setField(2)">Dead</b-button>
             </div>
-          </div>
+            <div id="china-map" ref="map"></div>
 
-          <!-- legend -->
-          <div class="legend-container">
-            <div class="legend" id="legend">
-              <h2 class="legend" id="legend-title">Confirmed</h2>
-              <hr />
+            <!-- Timeline -->
+            <div class="time-container">
+              <div class="time">
+                <v-btn :color="playcolor" dark depressed fab class="play" @click="toggle">
+                  <v-icon large>{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
+                </v-btn>
 
-              <!-- Div where the dynamic legend is created  -->
-              <div class="legend" id="cd-legend"></div>
+                <input type="text" id="date" readonly />
+                <input class="slider" type="range" min="1" max="95" step="1" value="1" />
+              </div>
             </div>
-          </div>
-        </b-card>
-        <!-- Description of COVID China Map -->
-        <b-card class="card-text black-content">
-          <br />
-          <br />From January to May of 2020, the cumulative count of confirmed, recovered and dead cases in China are provided.
-          <br />
-          <br />Based on the dynamic change shown on map, the spread of this disease was very fast in January and February, but became slowly
-          after March. In April, this growth of disease already achieved plateau and only a few new confirmed cases are observed.
-          <br />
-          <br />Among those districts, Wuhan suffered the most: over 60% of the confirmed cases are clustered in Wuhan. This can be caused
-          by the lockdown action taken by the government.
-        </b-card>
-      </b-card-group>
+
+            <!-- legend -->
+            <div class="legend-container">
+              <div class="legend" id="legend">
+                <h2 class="legend" id="legend-title">Confirmed</h2>
+                <hr />
+
+                <!-- Div where the dynamic legend is created  -->
+                <div class="legend" id="cd-legend"></div>
+              </div>
+            </div>
+          </b-card>
+        </v-col>
+        <v-col cols="12" lg="5">
+          <!-- Description of COVID China Map -->
+          <b-card class="black-content">
+            From January to May of 2020, the cumulative count of confirmed, recovered and dead cases in China are provided.
+            <br />
+            <br />Based on the dynamic change shown on map, the spread of this disease was very fast in January and February, but became slowly
+            after March. In April, this growth of disease already achieved plateau and only a few new confirmed cases are observed.
+            <br />
+            <br />Among those districts, Wuhan suffered the most: over 60% of the confirmed cases are clustered in Wuhan. This can be caused
+            by the lockdown action taken by the government.
+          </b-card>
+        </v-col>
+      </v-row>
 
       <!-- COVID China Chart -->
-      <b-card-group deck>
-        <b-card class="card-content black-content">
-          <!-- line chart race -->
-          <Chart v-bind="chart_data" />
-        </b-card>
-        <!-- Description of COVID China Chart -->
-        <b-card class="card-text black-content">
-          <br />
-          <br />This chart shows the detailed growth of confirmed, recovered and dead cases in China.
-          <br />
-          <br />The most rapid growth is observed during the first 30 days since the first day with over 1000 confirmed cases.
-          This rapid growth is related to the outburst of virus and the poor timing -- exactly in the Chinese
-          Spring Festival, the largest annual migration. According to report,
-          <b>
-            <i>
-              'Over 300 million train tickets have been sold for the Spring
-              Festival travel rush after the presale started on Dec 12, 2019'
-            </i>
-          </b>. This busy human migration
-          increased the convinience for virus spreading.
-        </b-card>
-      </b-card-group>
+      <v-row align="center">
+        <v-col cols="12" lg="7">
+          <b-card class="card-content black-content">
+            <!-- line chart race -->
+            <Chart v-bind="chart_data" />
+          </b-card>
+        </v-col>
+        <v-col cols="12" lg="5">
+          <!-- Description of COVID China Chart -->
+          <b-card class="black-content">
+            This chart shows the detailed growth of confirmed, recovered and dead cases in China.
+            <br />
+            <br />The most rapid growth is observed during the first 30 days since the first day with over 1000 confirmed cases.
+            This rapid growth is related to the outburst of virus and the poor timing -- exactly in the Chinese
+            Spring Festival, the largest annual migration. According to report,
+            <b>
+              <i>
+                'Over 300 million train tickets have been sold for the Spring
+                Festival travel rush after the presale started on Dec 12, 2019'
+              </i>
+            </b>. This busy human migration
+            increased the convinience for virus spreading.
+          </b-card>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>

@@ -2,7 +2,10 @@
   <div>
     <v-container>
       <div class="py-12"></div>
-      <h2 class="display-3 font-weight-bold mb-3">Comparison of COVID-19 &amp; SARS</h2>
+      <h2
+        :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
+        class="font-weight-bold mb-3"
+      >Comparison of COVID-19 &amp; SARS</h2>
 
       <b-card class="black-content title font-weight-regular">
         Both COVID-19 and SARS come from a large family of Coronaviruses that causes respiratory diseases in humans.
@@ -11,41 +14,45 @@
       </b-card>
 
       <!-- Comparison -->
-      <b-card-group deck>
-        <b-card class="black-content">
-          <div class="align-middle">
-            <b>Comparison of Cumulative Confirmed, Recovered and Dead Count</b>
-          </div>
-          <apexchart
-            class="apexchart"
-            type="bar"
-            height="350"
-            :options="chartOptions"
-            :series="series"
-          ></apexchart>
-        </b-card>
-        <!-- Description of Comparison-->
-        <b-card class="black-content">
-          <div class="align-middle">
-            <b>Comparison of Death Rate</b>
-          </div>
-          <v-row>
-            <v-col class="align-middle">
-              COVID-19 in China
-              <h3>
-                <b-badge variant="danger">5.5%</b-badge>
-              </h3>
-            </v-col>
-            <v-col class="align-middle">
-              SARS in China
-              <h3>
-                <b-badge variant="danger">7.4%</b-badge>
-              </h3>
-            </v-col>
-          </v-row>From the cumulative count for confirmed, recovered, and dead casese in China, the number of COVID-19 cases is significantly higher than that of SARS, around 10 times the SARS cases.
-          Based on the existing numbers, the case fatality ratio of the two diseases are estimated. Although more people infected by COVID-19, the death rate is lower that SARS.
-        </b-card>
-      </b-card-group>
+      <v-row>
+        <v-col cols="12" lg="6">
+          <b-card class="black-content">
+            <div class="align-middle">
+              <b>Comparison of Cumulative Confirmed, Recovered and Dead Count</b>
+            </div>
+            <apexchart
+              class="apexchart"
+              type="bar"
+              height="350"
+              :options="chartOptions"
+              :series="series"
+            ></apexchart>
+          </b-card>
+        </v-col>
+        <v-col cols="12" lg="6">
+          <!-- Description of Comparison-->
+          <b-card class="black-content">
+            <div class="align-middle">
+              <b>Comparison of Death Rate</b>
+            </div>
+            <v-row>
+              <v-col class="align-middle">
+                COVID-19 in China
+                <h3>
+                  <b-badge variant="danger">5.5%</b-badge>
+                </h3>
+              </v-col>
+              <v-col class="align-middle">
+                SARS in China
+                <h3>
+                  <b-badge variant="danger">7.4%</b-badge>
+                </h3>
+              </v-col>
+            </v-row>From the cumulative count for confirmed, recovered, and dead casese in China, the number of COVID-19 cases is significantly higher than that of SARS, around 10 times the SARS cases.
+            Based on the existing numbers, the case fatality ratio of the two diseases are estimated. Although more people infected by COVID-19, the death rate is lower that SARS.
+          </b-card>
+        </v-col>
+      </v-row>
 
       <!-- Discussion -->
       <!-- <b-card-group deck> -->
