@@ -9,7 +9,7 @@ with SARS.
 * Main packages: Vue.js, Mapbox, Apex, Bootstrap
 
 ## Demo
-* [Link to Demo]()
+* Link to Demo: [COVID-19 in China](https://carto-lab.firebaseapp.com/)
 > Notice:in progrss
 * Screenshots of Demo <br/>
 ![Race Chart](https://github.com/SherryJYC/COVID_19_Visualization/blob/master/src/assets/img/race.png) <br/>
