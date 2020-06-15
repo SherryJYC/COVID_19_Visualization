@@ -1,12 +1,9 @@
 <template>
-  <!-- <div class="flourish-embed flourish-chart" :data-src="race_data" :data-url="race_url">{{race_url}}</div> -->
   <div>
     <div :style="yaxis">Cases</div>
-
     <div
       ref="caseStudyMap"
       class="text-center"
-      style="transform: translateX(-50px);"
     >No. of days since the 1st day over 1k confirmed cases</div>
     <iframe
       v-resize="updateYShift"

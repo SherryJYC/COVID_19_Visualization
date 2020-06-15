@@ -32,28 +32,28 @@
               <b-button class="btn-tab2" @click="setField(2)">Dead</b-button>
             </div>
 
-            <div id="sars-map" ref="map"></div>
+            <div id="sars-map" ref="map">
+              <!-- Timeline -->
+              <div class="time-container2">
+                <div class="time2">
+                  <v-btn :color="playcolor" dark depressed fab class="play2" @click="toggle">
+                    <v-icon large>{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
+                  </v-btn>
 
-            <!-- Timeline -->
-            <div class="time-container2">
-              <div class="time2">
-                <v-btn :color="playcolor" dark depressed fab class="play2" @click="toggle">
-                  <v-icon large>{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
-                </v-btn>
-
-                <input type="text" id="date2" readonly />
-                <input class="slider2" type="range" min="1" max="92" step="1" value="1" />
+                  <input type="text" id="date2" readonly />
+                  <input class="slider2" type="range" min="1" max="92" step="1" value="1" />
+                </div>
               </div>
-            </div>
 
-            <!-- legend -->
-            <div class="legend-container2">
-              <div class="legend2" id="legend2">
-                <h2 class="legend2" id="legend-title2">Confirmed</h2>
-                <hr />
+              <!-- legend -->
+              <div class="legend-container2">
+                <div class="legend2" id="legend2">
+                  <h2 class="legend2" id="legend-title2">Confirmed</h2>
+                  <hr />
 
-                <!-- Div where the dynamic legend is created  -->
-                <div class="legend2" id="cd-legend2"></div>
+                  <!-- Div where the dynamic legend is created  -->
+                  <div class="legend2" id="cd-legend2"></div>
+                </div>
               </div>
             </div>
           </b-card>
@@ -462,14 +462,15 @@ export default {
 }
 .time-container2 {
   position: absolute;
-  margin: 5px;
-  top: 536px;
-  right: 5px;
-  padding: 0px 8px;
-  margin-bottom: 30px;
+  /* margin: 5px; */
+  /* top: 536px; */
+  right: 0px;
+  /* padding: 0px 8px; */
+  /* margin-bottom: 30px; */
   z-index: 1;
   max-width: 500px;
   color: black;
+  bottom: 30px;
 }
 .time2 {
   background-color: white;
@@ -490,10 +491,10 @@ export default {
 }
 .legend-container2 {
   position: absolute;
-  margin: 5px;
-  top: 60px;
-  left: 5px;
-  padding: 0px 10px;
+  /* margin: 5px; */
+  /* top: 60px; */
+  /* left: 5px; */
+  /* padding: 0px 10px; */
   margin-bottom: 30px;
   z-index: 1;
   max-width: 200px;

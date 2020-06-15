@@ -30,28 +30,28 @@
               <b-button class="btn-tab" @click="setField(1)">Recovered</b-button>
               <b-button class="btn-tab" @click="setField(2)">Dead</b-button>
             </div>
-            <div id="china-map" ref="map"></div>
+            <div id="china-map" ref="map">
+              <!-- Timeline -->
+              <div class="time-container">
+                <div class="time">
+                  <v-btn :color="playcolor" dark depressed fab class="play" @click="toggle">
+                    <v-icon large>{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
+                  </v-btn>
 
-            <!-- Timeline -->
-            <div class="time-container">
-              <div class="time">
-                <v-btn :color="playcolor" dark depressed fab class="play" @click="toggle">
-                  <v-icon large>{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
-                </v-btn>
-
-                <input type="text" id="date" readonly />
-                <input class="slider" type="range" min="1" max="95" step="1" value="1" />
+                  <input type="text" id="date" readonly />
+                  <input class="slider" type="range" min="1" max="95" step="1" value="1" />
+                </div>
               </div>
-            </div>
 
-            <!-- legend -->
-            <div class="legend-container">
-              <div class="legend" id="legend">
-                <h2 class="legend" id="legend-title">Confirmed</h2>
-                <hr />
+              <!-- legend -->
+              <div class="legend-container">
+                <div class="legend" id="legend">
+                  <h2 class="legend" id="legend-title">Confirmed</h2>
+                  <hr />
 
-                <!-- Div where the dynamic legend is created  -->
-                <div class="legend" id="cd-legend"></div>
+                  <!-- Div where the dynamic legend is created  -->
+                  <div class="legend" id="cd-legend"></div>
+                </div>
               </div>
             </div>
           </b-card>
@@ -90,7 +90,7 @@
               <i>
                 'Over 300 million train tickets have been sold for the Spring
                 Festival travel rush after the presale started on Dec 12, 2019'
-              </i>
+              </i>[3]
             </b>. This busy human migration
             increased the convinience for virus spreading.
           </b-card>
@@ -464,11 +464,8 @@ export default {
 }
 .time-container {
   position: absolute;
-  margin: 5px;
-  top: 536px;
-  right: 5px;
-  padding: 0px 8px;
-  margin-bottom: 30px;
+  right: 0px;
+  bottom: 30px;
   z-index: 1;
   max-width: 500px;
   color: black;
@@ -492,10 +489,6 @@ export default {
 }
 .legend-container {
   position: absolute;
-  margin: 5px;
-  top: 58px;
-  left: 5px;
-  padding: 0px 10px;
   margin-bottom: 30px;
   z-index: 1;
   max-width: 200px;

@@ -1,7 +1,5 @@
 <template>
   <v-parallax :src="require('../assets/img/mask.jpg')" style="height:100%">
-    <!-- :height="[$vuetify.breakpoint.smAndDown ? '500': '300']" -->
-
     <v-container style="margin-top:50px; margin-bottom:50px">
       <v-row>
         <v-col class="text-center" cols="12" lg="4" md="4">

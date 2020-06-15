@@ -55,99 +55,67 @@
       </v-row>
 
       <!-- Discussion -->
-      <!-- <b-card-group deck> -->
-      <b-card class="black-content">
-        <h3 class="display-2 font-weight-bold mb-3">Diseases</h3>
-        <table class="table">
-          <thead>
-            <tr class="bg-dark text-white">
-              <th scope="col"></th>
-              <th scope="col">SARS</th>
-              <th scope="col">COVID-19</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="table-warning">
-              <th scope="row">Initial reported time</th>
-              <td>Early December, 2002</td>
-              <td>December 1, 2019</td>
-            </tr>
-            <tr class="table-warning">
-              <th scope="row">Average incubation time</th>
-              <td>4-6 days</td>
-              <td>4-6 days</td>
-            </tr>
-            <tr class="table-warning">
-              <th scope="row">Special treatement</th>
-              <td>Supplemental oxygen or a ventilator</td>
-              <td>Mostly recover without requiring special treatment. Some cases with rapid deterioration requires vantilatory support</td>
-            </tr>
-            <tr class="table-secondary">
-              <th scope="row text--black">Initial reported place</th>
-              <td>Guangdong</td>
-              <td>Wuhan Huanan Wholesale Market, Hubei</td>
-            </tr>
-            <tr class="table-secondary">
-              <th scope="row">Most common symptoms</th>
-              <td>Severe headache, dizziness and myalgia</td>
-              <td>Fever, dry cough, tiredness</td>
-            </tr>
-
-            <tr class="table-secondary">
-              <th scope="row">Areas</th>
-              <td>32 countries, areas or territories with cases. Most in South-East Asia</td>
-              <td>216 countries, areas or territories with cases. Most in America</td>
-            </tr>
-            <tr class="table-secondary">
-              <th scope="row">Zoonotic source</th>
-              <td>Bats</td>
-              <td>Unknown</td>
-            </tr>
-            <tr class="table-secondary">
-              <th scope="row">Vaccine</th>
-              <td></td>
-              <td>In testing</td>
-            </tr>
-          </tbody>
-        </table>Note: information summarized based on [2,3,4]
-      </b-card>
-      <b-card class="black-content">
-        <h3 class="display-2 font-weight-bold mb-3">Government Actions</h3>
-        <table class="table table-hover">
-          <thead>
-            <tr class="bg-dark text-white">
-              <th scope="col"></th>
-              <th scope="col">SARS</th>
-              <th scope="col">COVID-19</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="table-warning">
-              <th scope="row">Closedown of market</th>
-              <td>Early 2004 - All live markets are permanently banned in Beijing</td>
-              <td>January 3, 2020 - Hunan Wholesale market</td>
-            </tr>
-            <tr class="table-warning">
-              <th scope="row">Shelter hospital</th>
-              <td>April, 2003 - Beijing Xiaotangshan Hospital</td>
-              <td>Feburary, 2020 - Huoshenshan Hospital, Heishenshan Hospital</td>
-            </tr>
-            <tr class="table-secondary">
-              <th scope="row">Lockdown</th>
-              <td>No official lockdown</td>
-              <td>January 7, 2020 - Lockdown of Wuhan</td>
-            </tr>
-            <tr class="table-secondary">
-              <th scope="row text--black">Travel restrictions</th>
-              <td>Travel restrictions to Beijing later in time</td>
-              <td>Travel pass indicating health status</td>
-            </tr>
-          </tbody>
-        </table>Note: information summarized based on [3,5]
-      </b-card>
-      <b-card
-        class="black-content title font-weight-regular"
-      >The early lockdown of Wuhan during COVID-19 spread has been proved to be a wise decision. The timely iron fist measure has saved lifes, indicated by the low proportion of confirmed cases in other provinces. In Wuhan, two shelter hospitals were built for emergency response with vantilatory supports. This is a learnt experience from Beijing Xiaotangshan Hospital back in 2003. The planning and construction of Huoshenshan and Leishenshan Hosipital were based on archive of Beijing Xiaotangshan Hospital.</b-card>
+      <v-row>
+        <v-col cols="12">
+          <h3 class="display-2 font-weight-bold mb-3">Diseases</h3>
+          <v-simple-table light>
+            <!-- <table class="table table-hover"> -->
+            <thead>
+              <tr class="bg-dark">
+                <th scope="col" class="text-white subtitle-1 font-weight-bold"></th>
+                <th scope="col" class="text-white subtitle-1 font-weight-bold">SARS</th>
+                <th scope="col" class="text-white subtitle-1 font-weight-bold">COVID-19</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="{title,common,sars,covid} in diseases"
+                :key="title"
+                :class="common ? 'table-warning' : 'table-secondary'"
+              >
+                <th class="subtitle-1 font-weight-bold" scope="row">{{title}}</th>
+                <td class="subtitle-1 font-weight-regular">{{sars}}</td>
+                <td class="subtitle-1 font-weight-regular">{{covid}}</td>
+              </tr>
+            </tbody>
+            <!-- </table> -->
+          </v-simple-table>
+          <div class="py-1"></div>
+          <span>Note: information summarized based on [4,5,6]</span>
+        </v-col>
+        <v-col cols="12">
+          <h3 class="display-2 font-weight-bold mb-3">Government Actions</h3>
+          <v-simple-table light>
+            <!-- <table class="table table-hover"> -->
+            <thead>
+              <tr class="bg-dark">
+                <th scope="col" class="text-white subtitle-1 font-weight-bold"></th>
+                <th scope="col" class="text-white subtitle-1 font-weight-bold">SARS</th>
+                <th scope="col" class="text-white subtitle-1 font-weight-bold">COVID-19</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="{title,common,sars,covid} in actions"
+                :key="title"
+                :class="common ? 'table-warning' : 'table-secondary'"
+              >
+                <th class="subtitle-1 font-weight-bold" scope="row">{{title}}</th>
+                <td class="subtitle-1 font-weight-regular">{{sars}}</td>
+                <td class="subtitle-1 font-weight-regular">{{covid}}</td>
+              </tr>
+            </tbody>
+            <!-- </table> -->
+          </v-simple-table>
+          <div class="py-1"></div>
+          <span>Note: information summarized based on [5,7]</span>
+        </v-col>
+        <v-col cols="12">
+          <b-card
+            class="black-content title font-weight-regular"
+          >The early lockdown of Wuhan during COVID-19 spread has been proved to be a wise decision. The timely iron fist measure has saved lifes, indicated by the low proportion of confirmed cases in other provinces. In Wuhan, two shelter hospitals were built for emergency response with vantilatory supports. This is a learnt experience from Beijing Xiaotangshan Hospital back in 2003. The planning and construction of Huoshenshan and Leishenshan Hosipital were based on archive of Beijing Xiaotangshan Hospital.</b-card>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -245,7 +213,85 @@ export default {
           }
         }
       }
-    }
+    },
+    diseases: [
+      {
+        title: "Initial reported time",
+        common: true,
+        sars: "Early December, 2002",
+        covid: "December 1, 2019"
+      },
+      {
+        title: "Average incubation time",
+        common: true,
+        sars: "4-6 days",
+        covid: "4-6 days"
+      },
+      {
+        title: "Special treatement",
+        common: true,
+        sars: "Supplemental oxygen or a ventilator",
+        covid:
+          "Mostly recover without requiring special treatment. Some cases with rapid deterioration requires vantilatory support"
+      },
+      {
+        title: "Initial reported place",
+        common: false,
+        sars: "Guangdong",
+        covid: "Wuhan Huanan Wholesale Market, Hubei"
+      },
+      {
+        title: "Most common symptoms",
+        common: false,
+        sars: "Severe headache, dizziness and myalgia",
+        covid: "Fever, dry cough, tiredness"
+      },
+      {
+        title: "Areas",
+        common: false,
+        sars:
+          "32 countries, areas or territories with cases. Most in South-East Asia",
+        covid: "216 countries, areas or territories with cases. Most in America"
+      },
+      {
+        title: "Zoonotic source",
+        common: false,
+        sars: "Bats",
+        covid: "Unknown"
+      },
+      {
+        title: "Vaccine",
+        common: false,
+        sars: "",
+        covid: "In testing"
+      }
+    ],
+    actions: [
+      {
+        title: "Closedown of market",
+        common: true,
+        sars: "Early 2004 - All live markets are permanently banned in Beijing",
+        covid: "January 3, 2020 - Hunan Wholesale market was closed"
+      },
+      {
+        title: "Shelter hospital",
+        common: true,
+        sars: "April, 2003 - Beijing Xiaotangshan Hospital",
+        covid: "Feburary, 2020 - Huoshenshan Hospital, Heishenshan Hospital"
+      },
+      {
+        title: "Lockdown",
+        common: false,
+        sars: "No official lockdown",
+        covid: "January 7, 2020 - Lockdown of Wuhan"
+      },
+      {
+        title: "Travel restrictions",
+        common: false,
+        sars: "Travel restrictions to Beijing later in time",
+        covid: "Travel pass indicating health status"
+      }
+    ]
   })
 };
 </script>
@@ -259,6 +305,9 @@ export default {
 }
 .align-middle {
   text-align: center;
+}
+.v-data-table th {
+  padding: 10px 16px;
 }
 </style>>
 

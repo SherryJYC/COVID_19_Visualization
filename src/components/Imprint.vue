@@ -5,15 +5,19 @@
       <b-card class="black-content" text-variant="white" header="Sources">
         <b>References</b>
         <br />
+        <v-row class="source">[1] "Origin of SARS-CoV-2", 26-Mar-2020.</v-row>
         <v-row
           class="source"
-        >[1] “China's mass transit in high gear as Spring Festival travel rush starts,” 10-Jan-2020.</v-row>
+        >[2] "During the 40 day spring festival, the three railway stations in Wuhan sent 11.57 million passengers", 02-Mar-2019.</v-row>
         <v-row
           class="source"
-        >[2] "Consensus document on the epidemiology of severe acute respiratory syndrome (SARS)", 16-May-2003</v-row>
-        <v-row class="source">[3] "Coronavirus timeline", 10-June-2020</v-row>
-        <v-row class="source">[4] "Coronavirus", 14-June-2020</v-row>
-        <v-row class="source">[5] "Beijing permanently ban all live poultry market", 26-Jan-2014</v-row>
+        >[3] “China's mass transit in high gear as Spring Festival travel rush starts”, 10-Jan-2020.</v-row>
+        <v-row
+          class="source"
+        >[4] "Consensus document on the epidemiology of severe acute respiratory syndrome (SARS)", 16-May-2003.</v-row>
+        <v-row class="source">[5] "Coronavirus timeline", 10-June-2020.</v-row>
+        <v-row class="source">[6] "Coronavirus", 14-June-2020.</v-row>
+        <v-row class="source">[7] "Beijing permanently ban all live poultry market", 26-Jan-2014.</v-row>
 
         <br />
 

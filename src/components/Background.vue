@@ -43,17 +43,13 @@
             <b>
               Wuhan
               Huanan Wholesale Market
-            </b>, the biggest seafood wholesale market in central China.
+            </b> [1], the biggest seafood wholesale market in central China.
             <br />
             <br />The market locates close to Hankou Railway Station, one of the central hubs for railway in Wuhan.
-            The passenger volume of the station reached 5,500,000 during the 40 days of the Spring Festival transport season in 2019.
+            The passenger volume of the station reached 5,500,000 during the 40 days of the Spring Festival transport season in 2019 [2].
           </b-card>
         </v-col>
       </v-row>
-      <!-- <b-card-group deck>
-        
-        
-      </b-card-group>-->
 
       <!-- Global Status -->
       <h3
