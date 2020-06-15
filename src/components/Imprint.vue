@@ -28,8 +28,6 @@
             href="https://www.worldometers.info/coronavirus/?"
           >Worldometer COVID-19 Statistics</b-button>
         </v-row>
-        <v-row></v-row>
-        <v-row></v-row>
         <v-row>
           <b-button
             class="source"
@@ -56,12 +54,12 @@
             class="source"
             variant="dark"
             href="https://unsplash.com/photos/EAgGqOiDDMg"
-          >Landing image</b-button>
+          >Image of the landing</b-button>
           <b-button
             class="source"
             variant="dark"
             href="https://unsplash.com/photos/Lhb-zwQ-QGI"
-          >Banner image</b-button>
+          >Image of the banner</b-button>
           <b-button
             class="source"
             variant="dark"
@@ -71,7 +69,7 @@
             class="source"
             variant="dark"
             href="https://www.who.int/health-topics/coronavirus#tab=tab_1"
-          >Current status</b-button>
+          >Image of current status</b-button>
         </v-row>
       </b-card>
       <br />
