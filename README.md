@@ -10,7 +10,8 @@ with SARS.
 
 ## Demo
 * Link to Demo: [COVID-19 in China](https://carto-lab.firebaseapp.com/)
-> Notice:in progrss
+* Link to Processed Data: [Processed COVID-19 and SARS Data with Geoinformation]https://github.com/SherryJYC/COVID19-Processed-Timeseries-Data
+
 * Screenshots of Demo <br/>
 ![Race Chart](https://github.com/SherryJYC/COVID_19_Visualization/blob/master/src/assets/img/race.png) <br/>
 ![Map](https://github.com/SherryJYC/COVID_19_Visualization/blob/master/src/assets/img/map.png) <br/>
