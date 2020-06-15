@@ -9,9 +9,13 @@ with SARS.
 * Main packages: Vue.js, Mapbox, Apex, Bootstrap
 
 ## Demo
-* []()
-> Notice:in progrss
-* Screenshot (in progress)
+* Link to Demo: [COVID-19 in China](https://carto-lab.firebaseapp.com/)
+* Link to Processed Data: [Processed COVID-19 and SARS Data with Geoinformation](https://github.com/SherryJYC/COVID19-Processed-Timeseries-Data)
+
+* Screenshots of Demo <br/>
+![Race Chart](https://github.com/SherryJYC/COVID_19_Visualization/blob/master/src/assets/img/race.png) <br/>
+![Map](https://github.com/SherryJYC/COVID_19_Visualization/blob/master/src/assets/img/map.png) <br/>
+![Chart](https://github.com/SherryJYC/COVID_19_Visualization/blob/master/src/assets/img/chart.png)
 
 
 ## Project setup

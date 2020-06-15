@@ -20,20 +20,27 @@
           <b-button
             class="source"
             variant="dark"
-            href="https://github.com/BlankerL/DXY-COVID-19-Data"
-          >COVID-19/2019-nCoV Infection Time Series Data Warehouse</b-button>
+            href="https://www.worldometers.info/coronavirus/?"
+          >Worldometer COVID-19 Statistics</b-button>
           <b-button
             class="source"
             variant="dark"
-            href="https://www.worldometers.info/coronavirus/?"
-          >Worldometer COVID-19 Statistics</b-button>
+            href="https://github.com/owid/covid-19-data/tree/master/public/data"
+          >Data on COVID-19 (coronavirus) by Our World in Data</b-button>
         </v-row>
         <v-row>
           <b-button
             class="source"
             variant="dark"
+            href="https://github.com/BlankerL/DXY-COVID-19-Data"
+          >COVID-19/2019-nCoV Infection Time Series Data Warehouse</b-button>
+          <b-button
+            class="source"
+            variant="dark"
             href="https://ncov.dxy.cn/ncovh5/view/pneumonia?from=dxy&source=&link=&share="
           >DXY COVID-19 Statistics in China</b-button>
+        </v-row>
+        <v-row>
           <b-button
             class="source"
             variant="dark"
@@ -54,12 +61,12 @@
             class="source"
             variant="dark"
             href="https://unsplash.com/photos/EAgGqOiDDMg"
-          >Image of the landing</b-button>
+          >Image of Landing Page</b-button>
           <b-button
             class="source"
             variant="dark"
             href="https://unsplash.com/photos/Lhb-zwQ-QGI"
-          >Image of the banner</b-button>
+          >Image of Banner</b-button>
           <b-button
             class="source"
             variant="dark"
@@ -69,7 +76,7 @@
             class="source"
             variant="dark"
             href="https://www.who.int/health-topics/coronavirus#tab=tab_1"
-          >Image of current status</b-button>
+          >Image of Current status</b-button>
         </v-row>
       </b-card>
       <br />
