@@ -35,7 +35,6 @@
     </v-navigation-drawer>
 
     <v-content>
-      <!-- <v-theme-provider dark> -->
       <section id="landing">
         <v-parallax
           :height="$vuetify.breakpoint.smAndDown ? '500': '700'"
@@ -44,7 +43,6 @@
         >
           <v-overlay absolute opacity="0.4">
             <v-row no-gutters align="center">
-              <!-- <v-container fill-height> -->
               <v-row
                 no-gutters
                 align="center"
@@ -75,27 +73,57 @@
                   </v-btn>
                 </v-col>
               </v-row>
-              <!-- </v-container> -->
             </v-row>
           </v-overlay>
         </v-parallax>
       </section>
-      <section id="background">
+      <section
+        id="background"
+        v-intersect="{
+            handler: onIntersect,
+            options: {
+              threshold: 0
+            }
+          }"
+      >
         <Background />
       </section>
-      <section id="covid">
+      <section
+        id="covid"
+        v-intersect="{
+            handler: onIntersect,
+            options: {
+              threshold: 0
+            }
+          }"
+      >
         <COVID />
       </section>
-      <section id="sars">
+      <section
+        id="sars"
+        v-intersect="{
+            handler: onIntersect,
+            options: {
+              threshold: 0
+            }
+          }"
+      >
         <SARS />
       </section>
-      <section id="compare">
+      <section
+        id="compare"
+        v-intersect="{
+            handler: onIntersect,
+            options: {
+              threshold: 0
+            }
+          }"
+      >
         <Comparison />
       </section>
       <section id="imprint">
         <Imprint />
       </section>
-      <!-- </v-theme-provider> -->
     </v-content>
   </v-app>
 </template>
@@ -135,15 +163,35 @@ export default {
         title: "Comparison",
         id: "#compare"
       }
-    ]
+    ],
+    intersectID: "null"
   }),
   watch: {
     group() {
       this.drawer = false;
+      console.log(this.group);
     }
   },
   created() {
     this.$vuetify.theme.dark = true;
+  },
+  methods: {
+    onIntersect(entries) {
+      // More information about these options
+      // is located here: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+      var self = this;
+      var isIntersecting = entries[0].intersectionRatio > 0;
+      var id = entries[0].target.id;
+      if (isIntersecting) {
+        this.items.forEach((item, i) => {
+          if (item.id == "#" + id) {
+            self.group = i;
+          }
+        });
+      }
+      console.log(isIntersecting);
+      console.log(id);
+    }
   }
 };
 </script>

@@ -289,7 +289,8 @@ export default {
         title: "Travel restrictions",
         common: false,
         sars: "Travel restrictions to Beijing later in time",
-        covid: "Travel pass indicating health status"
+        covid:
+          "Travel pass indicating health status is checked at borders and public entrances"
       }
     ]
   })
