@@ -5,7 +5,7 @@
       <h2
         :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
         class="font-weight-bold mb-3"
-      >Background</h2>
+      >Current Pandemic Situation</h2>
     </v-container>
 
     <base-banner v-bind="globalStats"></base-banner>

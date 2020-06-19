@@ -5,7 +5,7 @@
       <h2
         :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
         class="font-weight-bold mb-3"
-      >COVID-19 Status in China</h2>
+      >COVID-19</h2>
     </v-container>
 
     <base-banner v-bind="covidStats"></base-banner>
@@ -13,9 +13,9 @@
     <v-container>
       <div class="py-5"></div>
       <b-card class="black-content title font-weight-regular">
-        In this global emergency, China is the first country to report and experience the ourburst of COVID-19.
+        In this global emergency, China is the first country to report and experience the outburst of COVID-19.
         Since January 2020, more and more cases were reported in Wuhan and nearby cities. In a short time, this disease has spread
-        all over China, which required immediate actions. After serveral months of the fighting with this disease, in May 2020,
+        all over China, which required immediate actions. After several months of the fighting with this disease, in May 2020,
         China is recovering from the disease: schools are reopened and flights are rescheduled...
         <br />
         <br />To have a closer look of the dynamic change of COVID-19 in China from January to May, we provide the the following map
@@ -26,9 +26,9 @@
         <v-col cols="12" lg="7">
           <b-card class="card-content black-content">
             <div>
-              <b-button :pressed="true" class="btn-tab" @click="setField(0)">Confirmed</b-button>
-              <b-button class="btn-tab" @click="setField(1)">Recovered</b-button>
-              <b-button class="btn-tab" @click="setField(2)">Dead</b-button>
+              <b-button :pressed="true" class="btn-tab" id="confirm" @click="setField(0)">Confirmed</b-button>
+              <b-button class="btn-tab" id="dead" @click="setField(2)">Dead</b-button>
+              <b-button class="btn-tab" id="recover" @click="setField(1)">Recovered</b-button>
             </div>
             <div id="china-map" ref="map">
               <!-- Timeline -->
@@ -92,7 +92,7 @@
                 Festival travel rush after the presale started on Dec 12, 2019'
               </i>[3]
             </b>. This busy human migration
-            increased the convinience for virus spreading.
+            increased the convenience for virus spreading.
           </b-card>
         </v-col>
       </v-row>
@@ -510,7 +510,14 @@ export default {
   margin-bottom: 5px;
 }
 /* Button style */
-.active {
+#confirm.active {
   background-color: #a8322d !important;
+}
+#dead.active {
+  background-color: white !important;
+  color: black;
+}
+#recover.active {
+  background-color: green !important;
 }
 </style>

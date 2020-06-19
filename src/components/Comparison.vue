@@ -48,7 +48,7 @@
                   <b-badge variant="danger">7.4%</b-badge>
                 </h3>
               </v-col>
-            </v-row>From the cumulative count for confirmed, recovered, and dead casese in China, the number of COVID-19 cases is significantly higher than that of SARS, around 10 times the SARS cases.
+            </v-row>From the cumulative count for confirmed, recovered, and dead cases in China, the number of COVID-19 cases is significantly higher than that of SARS, around 10 times the SARS cases.
             Based on the existing numbers, the case fatality ratio of the two diseases are estimated. Although more people infected by COVID-19, the death rate is lower that SARS.
           </b-card>
         </v-col>
@@ -113,7 +113,11 @@
         <v-col cols="12">
           <b-card
             class="black-content title font-weight-regular"
-          >The early lockdown of Wuhan during COVID-19 spread has been proved to be a wise decision. The timely iron fist measure has saved lifes, indicated by the low proportion of confirmed cases in other provinces. In Wuhan, two shelter hospitals were built for emergency response with vantilatory supports. This is a learnt experience from Beijing Xiaotangshan Hospital back in 2003. The planning and construction of Huoshenshan and Leishenshan Hosipital were based on archive of Beijing Xiaotangshan Hospital.</b-card>
+          >The early lockdown of Wuhan during COVID-19 spread has been proved to be a wise decision. The timely iron fist measure has saved lives, 
+          indicated by the low proportion of confirmed cases in other provinces. In Wuhan, two shelter hospitals were built 
+          for emergency response with ventilatory supports. This is a learnt experience from Beijing Xiaotangshan Hospital back 
+          in 2003. The planning and construction of Huoshenshan and Leishenshan Hospital were based on archive of Beijing Xiaotangshan 
+          Hospital.</b-card>
         </v-col>
       </v-row>
     </v-container>
@@ -228,7 +232,7 @@ export default {
         covid: "4-6 days"
       },
       {
-        title: "Special treatement",
+        title: "Special treatment",
         common: true,
         sars: "Supplemental oxygen or a ventilator",
         covid:
@@ -277,7 +281,7 @@ export default {
         title: "Shelter hospital",
         common: true,
         sars: "April, 2003 - Beijing Xiaotangshan Hospital",
-        covid: "Feburary, 2020 - Huoshenshan Hospital, Heishenshan Hospital"
+        covid: "February, 2020 - Huoshenshan Hospital, Heishenshan Hospital"
       },
       {
         title: "Lockdown",

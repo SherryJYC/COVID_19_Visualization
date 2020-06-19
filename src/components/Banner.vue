@@ -39,8 +39,9 @@
       <span class="white--text font-weight-bold">
         Statistics from
         <a
-          href="link"
+          :href="link"
           class="light-blue--text text--lighten-3 font-weight-bold"
+          target="_blank"
         >{{source}}</a>
         . Last updated: {{lastUpdate}}
       </span>

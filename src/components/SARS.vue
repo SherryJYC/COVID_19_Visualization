@@ -5,7 +5,7 @@
       <h2
         :class="[$vuetify.breakpoint.smAndDown ? 'display-2' : 'display-3']"
         class="font-weight-bold mb-3"
-      >SARS Status in China</h2>
+      >SARS</h2>
     </v-container>
 
     <base-banner v-bind="sarsStats"></base-banner>
@@ -15,10 +15,10 @@
       <b-card class="black-content title font-weight-regular">
         The last time for China to experience such a serious pandemic disease is in 2003:
         Severe Acute Respiratory Syndrome (SARS). It was firstly reported in the December of 2002 in Guangdong, China
-        and then spread to nearby cities. Considering the simliarity between COVID-19 and SARS, the dynamic change of
+        and then spread to nearby cities. Considering the similarity between COVID-19 and SARS, the dynamic change of
         SARS is discussed.
         <br />
-        <br />To check more details of the dynamic change of SARS in China from March to Auguest, we provide the the following map
+        <br />To check more details of the dynamic change of SARS in China from March to August, we provide the the following map
         and chart.
       </b-card>
 
@@ -27,9 +27,9 @@
         <v-col cols="12" lg="7">
           <b-card class="card-content black-content">
             <div>
-              <b-button :pressed="true" class="btn-tab2" @click="setField(0)">Confirmed</b-button>
-              <b-button class="btn-tab2" @click="setField(1)">Recovered</b-button>
-              <b-button class="btn-tab2" @click="setField(2)">Dead</b-button>
+              <b-button :pressed="true" class="btn-tab2" id="confirm2" @click="setField(0)">Confirmed</b-button>
+              <b-button class="btn-tab2" id="dead2" @click="setField(2)">Dead</b-button>
+              <b-button class="btn-tab2" id="recover2" @click="setField(1)">Recovered</b-button>
             </div>
 
             <div id="sars-map" ref="map">
@@ -516,7 +516,14 @@ export default {
   margin-bottom: 5px;
 }
 /* Button style */
-.active {
+#confirm2.active {
   background-color: #a8322d !important;
+}
+#dead2.active {
+  background-color: white !important;
+  color: black;
+}
+#recover2.active {
+  background-color: green !important;
 }
 </style>

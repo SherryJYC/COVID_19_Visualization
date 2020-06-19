@@ -22,69 +22,139 @@
         <br />
 
         <b>Data sources</b>
+        <br/>
+        (Date of Latest Check: 18-June-2020)
         <br />
         <v-row>
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="https://www.worldometers.info/coronavirus/?"
-          >Worldometer COVID-19 Statistics</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >Worldometer COVID-19 Statistics</a></b-button>
+
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="https://github.com/owid/covid-19-data/tree/master/public/data"
-          >Data on COVID-19 (coronavirus) by Our World in Data</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >
+          Data on COVID-19 (coronavirus) by Our World in Data</a></b-button>
         </v-row>
+
         <v-row>
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="https://github.com/BlankerL/DXY-COVID-19-Data"
-          >COVID-19/2019-nCoV Infection Time Series Data Warehouse</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >
+          COVID-19/2019-nCoV Infection Time Series Data Warehouse</a></b-button>
+
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="https://ncov.dxy.cn/ncovh5/view/pneumonia?from=dxy&source=&link=&share="
-          >DXY COVID-19 Statistics in China</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >
+          DXY COVID-19 Statistics in China</a></b-button>
         </v-row>
+
         <v-row>
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="http://www.nhc.gov.cn/wjw/zcjd/201304/a0d4975881e44d389195779773afaabc.shtml"
-          >SARS Daily Report by NHC, China</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >
+          SARS Daily Report by NHC, China</a></b-button>
         </v-row>
 
         <br />
         <b>Image sources</b>
         <br />
+        (Date of Latest Check: 18-June-2020)
+        <br/>
         <v-row>
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="https://www.google.com/search?q=virus+icon+png+rounded&tbm=isch&ved=2ahUKEwj98o-x4unpAhUXMRoKHT5wA84Q2-cCegQIABAA&oq=virus+icon+png+rounded&gs_lcp=CgNpbWcQAzoGCAAQCBAeUIicIFjfpSBgi6ggaABwAHgAgAHIBogBhA6SAQczLTMuNi0xmAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=zMDZXv3cLJfiaL7gjfAM&bih=798&biw=1387#imgrc=vV9hQoyVxxqWkM"
-          >Icon of Virus</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >
+          Icon of Virus</a></b-button>
+
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="https://unsplash.com/photos/EAgGqOiDDMg"
-          >Image of Landing Page</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >
+          Image of Landing Page</a></b-button>
+
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="https://unsplash.com/photos/Lhb-zwQ-QGI"
-          >Image of Banner</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >
+          Image of Banner</a></b-button>
+
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="https://www.google.com/search?q=wuhan+huanan+market&sxsrf=ALeKk01rbok8TltNZg0UyRvQUDqdGIlqQQ:1591330387102&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj95sXT5-npAhUKDuwKHXb1AdEQ_AUoAXoECBUQAw&biw=1387&bih=798#imgrc=bKBhC7tnbnfZuM"
-          >Image of Huanan Market</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >
+          Image of Huanan Market</a></b-button>
+
           <b-button
             class="source"
             variant="dark"
+          >
+          <a
             href="https://www.who.int/health-topics/coronavirus#tab=tab_1"
-          >Image of Current status</b-button>
+            target="_blank"
+            class="white--text text--lighten-3"
+          >
+          Image of Current status</a></b-button>
         </v-row>
+        <br />
+        <b>Main Software Dependencies</b>
+        <br />
+        (Date of Latest Check: 18-June-2020)
+        <br/>
+        <v-row class="source">
+          Vuetify, Mapbox, Flourish, Bootstrap, Apex
+        </v-row>
+
       </b-card>
       <br />
       <b-card class="black-content" text-variant="white" header="Team">

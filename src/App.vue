@@ -13,7 +13,7 @@
         <v-toolbar-title
           :class="$vuetify.breakpoint.smAndDown ? 'title':'headline'"
           class="font-weight-black"
-        >COVID-19 in China</v-toolbar-title>
+        >Recent Pandemics in China</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"></v-app-bar-nav-icon>
@@ -57,7 +57,7 @@
                           : 'display-4'
                       ]"
                     class="font-weight-black"
-                  >COVID-19 in China</span>
+                  >COVID-19 and SARS</span>
                   <br />
 
                   <p
@@ -67,7 +67,8 @@
                           : 'title'
                       ]"
                     class="mx-auto title font-weight-light mb-8"
-                  >COVID-19 is a newly disease caused by the novel coronavirus. By far, the outbreak of COVID-19 has spread all over the world</p>
+                  >COVID-19 is a newly disease caused by the novel coronavirus, which has spread all over the world.
+                  Similarly, another pandemic, SARS, caused global emergency in 2003.</p>
                   <v-btn class="align-self-end" fab outlined @click="$vuetify.goTo('#background')">
                     <v-icon>mdi-chevron-double-down</v-icon>
                   </v-btn>
@@ -121,7 +122,15 @@
       >
         <Comparison />
       </section>
-      <section id="imprint">
+      <section 
+        id="imprint"
+        v-intersect="{
+            handler: onIntersect,
+            options: {
+              threshold: 0
+            }
+          }"
+      >
         <Imprint />
       </section>
     </v-content>
@@ -151,17 +160,21 @@ export default {
     group: null,
     items: [
       {
-        title: "Background",
+        title: "Current Pandemic Situation",
         id: "#background"
       },
-      { title: "China COVID-19", id: "#covid" },
+      { title: "COVID-19", id: "#covid" },
       {
-        title: "China SARS",
+        title: "SARS",
         id: "#sars"
       },
       {
         title: "Comparison",
         id: "#compare"
+      },
+      {
+        title: "Imprint",
+        id: "#imprint"
       }
     ],
     intersectID: "null"
