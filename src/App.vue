@@ -58,7 +58,7 @@
                       ]"
                     class="font-weight-black"
                   >COVID-19 and SARS</span>
-                  <br />
+                  <div class="py-5"></div>
 
                   <p
                     :class="[
@@ -67,8 +67,10 @@
                           : 'title'
                       ]"
                     class="mx-auto title font-weight-light mb-8"
-                  >COVID-19 is a newly disease caused by the novel coronavirus, which has spread all over the world.
-                  Similarly, another pandemic, SARS, caused global emergency in 2003.</p>
+                  >
+                    COVID-19 is a newly disease caused by the novel coronavirus, which has spread all over the world.
+                    Similarly, another pandemic, SARS, caused global emergency in 2003.
+                  </p>
                   <v-btn class="align-self-end" fab outlined @click="$vuetify.goTo('#background')">
                     <v-icon>mdi-chevron-double-down</v-icon>
                   </v-btn>
@@ -122,7 +124,7 @@
       >
         <Comparison />
       </section>
-      <section 
+      <section
         id="imprint"
         v-intersect="{
             handler: onIntersect,
