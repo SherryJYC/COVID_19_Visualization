@@ -111,13 +111,13 @@
           <span>Note: information summarized based on [5,7]</span>
         </v-col>
         <v-col cols="12">
-          <b-card
-            class="black-content title font-weight-regular"
-          >The early lockdown of Wuhan during COVID-19 spread has been proved to be a wise decision. The timely iron fist measure has saved lives, 
-          indicated by the low proportion of confirmed cases in other provinces. In Wuhan, two shelter hospitals were built 
-          for emergency response with ventilatory supports. This is a learnt experience from Beijing Xiaotangshan Hospital back 
-          in 2003. The planning and construction of Huoshenshan and Leishenshan Hospital were based on archive of Beijing Xiaotangshan 
-          Hospital.</b-card>
+          <b-card class="black-content title font-weight-regular">
+            In conclusion, the early lockdown of Wuhan during COVID-19 spread has been proved to be a wise decision. The timely iron fist measure has saved lives,
+            indicated by the low proportion of confirmed cases in other provinces. In Wuhan, two shelter hospitals were built
+            for emergency response with ventilatory supports. This is a learnt experience from Beijing Xiaotangshan Hospital back
+            in 2003. The planning and construction of Huoshenshan and Leishenshan Hospital were based on archive of Beijing Xiaotangshan
+            Hospital.
+          </b-card>
         </v-col>
       </v-row>
     </v-container>
