@@ -184,7 +184,6 @@ export default {
   watch: {
     group() {
       this.drawer = false;
-      console.log(this.group);
     }
   },
   created() {
@@ -204,8 +203,6 @@ export default {
           }
         });
       }
-      console.log(isIntersecting);
-      console.log(id);
     }
   }
 };
