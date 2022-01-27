@@ -9,7 +9,7 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
-    "apexcharts": "^3.19.2",
+    "apexcharts": "^3.24.0",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "chalk": "^4.1.0",
